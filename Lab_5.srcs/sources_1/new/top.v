@@ -37,18 +37,18 @@ module top
     
     // A
     wire clka;
-    wire ena;
-    wire wea;
+    reg ena = 0;
+    reg wea = 0;
     reg  [15:0] addra;
-    wire  [7:0]  dina;
+    reg  [7:0]  dina;
     wire [7:0]  douta;
     
     // B
     wire clkb;
-    wire enb;
-    wire web;
+    reg enb = 1;
+    reg web = 0;
     reg  [15:0] addrb;
-    wire  [7:0]  dinb;
+    reg  [7:0]  dinb;
     wire [7:0]  doutb;
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
     // VGA //
@@ -71,19 +71,31 @@ module top
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     reg key_pressed = 0;  // Start Low pass filtering
   
-    image_dp_ram rammy_ram (
-      .clka(clka),    // input wire clka
-      .ena(ena),      // input wire ena
-      .wea(wea),      // input wire [0 : 0] wea
-      .addra(addra),  // input wire [15 : 0] addra
-      .dina(dina),    // input wire [7 : 0] dina
-      .douta(douta),  // output wire [7 : 0] douta
-      .clkb(clkb),    // input wire clkb
-      .enb(enb),      // input wire enb
-      .web(web),      // input wire [0 : 0] web
-      .addrb(addrb),  // input wire [15 : 0] addrb
-      .dinb(dinb),    // input wire [7 : 0] dinb
-      .doutb(doutb)  // output wire [7 : 0] doutb
+    assign clka = clk_100MHz;
+    assign clkb = clk_100MHz;
+    
+//    image_dp_ram rammy_ram (
+//      .clka(clka),    // input wire clka
+//      .ena(ena),      // input wire ena
+//      .wea(wea),      // input wire [0 : 0] wea
+//      .addra(addra),  // input wire [15 : 0] addra
+//      .dina(dina),    // input wire [7 : 0] dina
+//      .douta(douta),  // output wire [7 : 0] douta
+//      .clkb(clkb),    // input wire clkb
+//      .enb(enb),      // input wire enb
+//      .web(),      // input wire [0 : 0] web
+//      .addrb(addrb),  // input wire [15 : 0] addrb
+//      .dinb(dinb),    // input wire [7 : 0] dinb
+//      .doutb(doutb)  // output wire [7 : 0] doutb
+//    );
+
+    true_dual_port_ram dp_ram(
+        .clka(clka),.clkb(clkb),
+        .ena(ena),.enb(enb),
+        .wea(wea),.web(web),
+        .addra(addra),.addrb(addrb),
+        .dia(dina),.dib(dinb),
+        .doa(douta),.dob(doutb)
     );
     
     // Instantiate keyboard interface
@@ -132,7 +144,7 @@ module top
     // Update pixel color data
     assign rgb = (video_on) ? rgb_reg : 12'b000000000000;
        
-endmodule;
+endmodule
 
 
 /*
