@@ -55,13 +55,25 @@ module sim;
 
 // true_dual_port_ram 
 // #(.DATA_WIDTH(8), .DATA_DEPTH(65536),.FILENAME("./image_lab.data"))
- true_dual_port_ram dp_ram(
-        .clka(clka),.clkb(clkb),
-        .ena(ena),.enb(enb),
-        .wea(wea),.web(web),
-        .addra(addra),.addrb(addrb),
-        .dia(dina),.dib(dinb),
-        .doa(douta),.dob(doutb)
+// true_dual_port_ram dp_ram(
+//        .clka(clka),.clkb(clkb),
+//        .ena(ena),.enb(enb),
+//        .wea(wea),.web(web),
+//        .addra(addra),.addrb(addrb),
+//        .dia(dina),.dib(dinb),
+//        .doa(douta),.dob(doutb)
+//    );
+
+image_dp_ram rammy (
+      .clka(clka),    // input wire clka
+      .ena(ena),      // input wire ena
+      .wea(wea),      // input wire [0 : 0] wea
+      .addra(addra),  // input wire [15 : 0] addra
+      .dina(dina),    // input wire [7 : 0] dina
+      .clkb(clkb),    // input wire clkb
+      .enb(enb),      // input wire enb
+      .addrb(addrb),  // input wire [15 : 0] addrb
+      .doutb(doutb)  // output wire [7 : 0] doutb
     );
 
 //always #5 clka = ~clka;
@@ -86,18 +98,18 @@ module sim;
 
 reg [15:0] i;
 reg [15:0] i_next;
-always #1 clka <= ~clka;
+always #1 clkb <= ~clkb;
 initial begin
-    ena = 1;
+    enb = 1;
     wea = 0;
-    clka = 0;
+    clkb = 0;
     i = 0;
     i_next = 0;
     #5
     forever begin
-    for (i = 0; i < 65535; i = i+1) begin
-        addra <= i_next;
-        $display ("Addr: %d  Data: %b",i,douta);
+    for (i = 0; i < 65536; i = i+1) begin
+        addrb <= i_next;
+        $display ("Addr: %d  Data: %b",i,doutb);
         #2
         i <= i + 1;
         i_next <= i;

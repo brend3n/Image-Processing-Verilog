@@ -71,6 +71,8 @@ proc create_report { reportName command } {
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
 set_param chipscope.maxJobs 2
+set_param xicom.use_bs_reader 1
+set_msg_config -id {Common 17-41} -limit 10000000
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a35tcpg236-1
 
@@ -89,6 +91,8 @@ set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 add_files {{C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/imports/FPGA/image.coe}}
+add_files {{c:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/image.coe}}
+read_mem {{C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/image.data}}
 read_verilog -library xil_defaultlib {
   {C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/new/debouncer.v}
   {C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/new/keyboard_interface.v}
@@ -97,10 +101,8 @@ read_verilog -library xil_defaultlib {
   {C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/new/vga_controller.v}
   {C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/new/top.v}
 }
-read_ip -quiet {{C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/ip/image_dp_ram/image_dp_ram.xci}}
-set_property used_in_synthesis 1 [get_files -all {{C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/ip/image_dp_ram/sim/image_dp_ram.v}}]
-set_property used_in_implementation 1 [get_files -all {{C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/ip/image_dp_ram/sim/image_dp_ram.v}}]
-set_property used_in_implementation false [get_files -all {{c:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/ip/image_dp_ram/image_dp_ram_ooc.xdc}}]
+read_ip -quiet {{c:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/ip/image_dp_ram_1/image_dp_ram.xci}}
+set_property used_in_implementation false [get_files -all {{c:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/ip/image_dp_ram_1/image_dp_ram_ooc.xdc}}]
 
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being

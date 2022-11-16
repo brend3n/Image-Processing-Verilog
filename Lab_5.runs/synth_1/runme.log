@@ -17,29 +17,305 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t
 INFO: [Device 21-403] Loading part xc7a35tcpg236-1
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 13220
+INFO: [Synth 8-7075] Helper process launched with PID 6412
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1033.309 ; gain = 0.000
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1035.918 ; gain = 0.000
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'top' [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/new/top.v:23]
-INFO: [Synth 8-6157] synthesizing module 'image_dp_ram' [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.runs/synth_1/.Xil/Vivado-10456-Chungus/realtime/image_dp_ram_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'image_dp_ram' (1#1) [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.runs/synth_1/.Xil/Vivado-10456-Chungus/realtime/image_dp_ram_stub.v:5]
-ERROR: [Synth 8-448] named port connection 'ena' does not exist for instance 'rammy_ram' of module 'image_dp_ram' [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/new/top.v:79]
+INFO: [Synth 8-6157] synthesizing module 'image_dp_ram' [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.runs/synth_1/.Xil/Vivado-6400-Chungus/realtime/image_dp_ram_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'image_dp_ram' (1#1) [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.runs/synth_1/.Xil/Vivado-6400-Chungus/realtime/image_dp_ram_stub.v:6]
 INFO: [Synth 8-6157] synthesizing module 'keyboard_interface' [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/new/keyboard_interface.v:23]
 INFO: [Synth 8-6157] synthesizing module 'ps2_receiver' [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/new/ps2_receiver.v:23]
 INFO: [Synth 8-6157] synthesizing module 'debouncer' [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/new/debouncer.v:23]
 	Parameter COUNT_MAX bound to: 19 - type: integer 
 	Parameter COUNT_WIDTH bound to: 5 - type: integer 
-ERROR: [Synth 8-6156] failed synthesizing module 'debouncer' [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/new/debouncer.v:23]
-ERROR: [Synth 8-6156] failed synthesizing module 'ps2_receiver' [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/new/ps2_receiver.v:23]
-ERROR: [Synth 8-6156] failed synthesizing module 'keyboard_interface' [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/new/keyboard_interface.v:23]
-ERROR: [Synth 8-6156] failed synthesizing module 'top' [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/new/top.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'debouncer' (2#1) [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/new/debouncer.v:23]
+INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/new/ps2_receiver.v:55]
+INFO: [Synth 8-6155] done synthesizing module 'ps2_receiver' (3#1) [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/new/ps2_receiver.v:23]
+WARNING: [Synth 8-567] referenced signal 'keycodev' should be on the sensitivity list [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/new/keyboard_interface.v:59]
+INFO: [Synth 8-6157] synthesizing module 'seven_segment_controller' [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/new/seven_segment_controller.v:21]
+	Parameter NULL bound to: 7'b1111111 
+	Parameter ZERO bound to: 7'b0000001 
+	Parameter ONE bound to: 7'b1001111 
+	Parameter TWO bound to: 7'b0010010 
+	Parameter THREE bound to: 7'b0000110 
+	Parameter FOUR bound to: 7'b1001100 
+	Parameter FIVE bound to: 7'b0100100 
+	Parameter SIX bound to: 7'b0100000 
+	Parameter SEVEN bound to: 7'b0001111 
+	Parameter EIGHT bound to: 7'b0000000 
+	Parameter NINE bound to: 7'b0000100 
+	Parameter A bound to: 7'b0001000 
+	Parameter B bound to: 7'b1100000 
+	Parameter C bound to: 7'b1000110 
+	Parameter D bound to: 7'b0100001 
+	Parameter E bound to: 7'b0110000 
+	Parameter F bound to: 7'b0111000 
+	Parameter null_flag bound to: 0 - type: integer 
+INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/new/seven_segment_controller.v:75]
+INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/new/seven_segment_controller.v:105]
+INFO: [Synth 8-6155] done synthesizing module 'seven_segment_controller' (4#1) [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/new/seven_segment_controller.v:21]
+WARNING: [Synth 8-567] referenced signal 'digit_reg' should be on the sensitivity list [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/new/keyboard_interface.v:128]
+INFO: [Synth 8-6155] done synthesizing module 'keyboard_interface' (5#1) [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/new/keyboard_interface.v:23]
+INFO: [Synth 8-6157] synthesizing module 'vga_controller' [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/new/vga_controller.v:3]
+	Parameter HD bound to: 640 - type: integer 
+	Parameter HF bound to: 48 - type: integer 
+	Parameter HB bound to: 16 - type: integer 
+	Parameter HR bound to: 96 - type: integer 
+	Parameter HMAX bound to: 799 - type: integer 
+	Parameter VD bound to: 480 - type: integer 
+	Parameter VF bound to: 10 - type: integer 
+	Parameter VB bound to: 33 - type: integer 
+	Parameter VR bound to: 2 - type: integer 
+	Parameter VMAX bound to: 524 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'vga_controller' (6#1) [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/new/vga_controller.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'top' (7#1) [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/new/top.v:23]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1073.750 ; gain = 40.441
+Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1079.164 ; gain = 43.246
 ---------------------------------------------------------------------------------
-RTL Elaboration failed
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1079.164 ; gain = 43.246
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1079.164 ; gain = 43.246
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1079.164 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.runs/synth_1/.Xil/Vivado-6400-Chungus/image_dp_ram_1/image_dp_ram/image_dp_ram_in_context.xdc] for cell 'rammy'
+Finished Parsing XDC File [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.runs/synth_1/.Xil/Vivado-6400-Chungus/image_dp_ram_1/image_dp_ram/image_dp_ram_in_context.xdc] for cell 'rammy'
+Parsing XDC File [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/constrs_1/new/const.xdc]
+WARNING: [Vivado 12-584] No ports matched 'led[15]'. [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/constrs_1/new/const.xdc:77]
+WARNING: [Vivado 12-584] No ports matched 'led[15]'. [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/constrs_1/new/const.xdc:78]
+WARNING: [Vivado 12-584] No ports matched 'dp'. [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/constrs_1/new/const.xdc:97]
+WARNING: [Vivado 12-584] No ports matched 'dp'. [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/constrs_1/new/const.xdc:98]
+Finished Parsing XDC File [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/constrs_1/new/const.xdc]
+WARNING: [Project 1-498] One or more constraints failed evaluation while reading constraint file [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/constrs_1/new/const.xdc] and the design contains unresolved black boxes. These constraints will be read post-synthesis (as long as their source constraint file is marked as used_in_implementation) and should be applied correctly then. You should review the constraints listed in the file [.Xil/top_propImpl.xdc] and check the run log file to verify that these constraints were correctly applied.
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/constrs_1/new/const.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/top_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1191.840 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 1191.840 ; gain = 0.000
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'rammy' at clock pin 'clka' is different from the actual clock period '10.000', this can lead to different synthesis results.
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 1199.484 ; gain = 163.566
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a35tcpg236-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 1199.484 ; gain = 163.566
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property DONT_TOUCH = true for rammy. (constraint file  auto generated constraint, line ).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 1199.484 ; gain = 163.566
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-327] inferring latch for variable 'anode_reg' [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/new/seven_segment_controller.v:106]
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 1199.484 ; gain = 163.566
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   17 Bit       Adders := 1     
+	   2 Input   10 Bit       Adders := 2     
+	   2 Input    5 Bit       Adders := 2     
+	   2 Input    4 Bit       Adders := 1     
+	   2 Input    2 Bit       Adders := 2     
++---Registers : 
+	               17 Bit    Registers := 1     
+	               16 Bit    Registers := 3     
+	               10 Bit    Registers := 4     
+	                8 Bit    Registers := 3     
+	                7 Bit    Registers := 1     
+	                5 Bit    Registers := 2     
+	                4 Bit    Registers := 3     
+	                2 Bit    Registers := 2     
+	                1 Bit    Registers := 11    
++---Muxes : 
+	   2 Input   17 Bit        Muxes := 1     
+	   2 Input   12 Bit        Muxes := 1     
+	   2 Input    8 Bit        Muxes := 1     
+	   2 Input    4 Bit        Muxes := 2     
+	  13 Input    4 Bit        Muxes := 1     
+	   2 Input    2 Bit        Muxes := 1     
+	   2 Input    1 Bit        Muxes := 7     
+	   3 Input    1 Bit        Muxes := 1     
+	  12 Input    1 Bit        Muxes := 2     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 90 (col length:60)
+BRAMs: 100 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1199.484 ; gain = 163.566
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:25 ; elapsed = 00:00:25 . Memory (MB): peak = 1199.484 ; gain = 163.566
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:25 ; elapsed = 00:00:26 . Memory (MB): peak = 1199.484 ; gain = 163.566
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:25 ; elapsed = 00:00:26 . Memory (MB): peak = 1209.984 ; gain = 174.066
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+CRITICAL WARNING: [Synth 8-4442] BlackBox module rammy has unconnected pin addra[15]
+CRITICAL WARNING: [Synth 8-4442] BlackBox module rammy has unconnected pin addra[14]
+CRITICAL WARNING: [Synth 8-4442] BlackBox module rammy has unconnected pin addra[13]
+CRITICAL WARNING: [Synth 8-4442] BlackBox module rammy has unconnected pin addra[12]
+CRITICAL WARNING: [Synth 8-4442] BlackBox module rammy has unconnected pin addra[11]
+CRITICAL WARNING: [Synth 8-4442] BlackBox module rammy has unconnected pin addra[10]
+CRITICAL WARNING: [Synth 8-4442] BlackBox module rammy has unconnected pin addra[9]
+CRITICAL WARNING: [Synth 8-4442] BlackBox module rammy has unconnected pin addra[8]
+CRITICAL WARNING: [Synth 8-4442] BlackBox module rammy has unconnected pin addra[7]
+CRITICAL WARNING: [Synth 8-4442] BlackBox module rammy has unconnected pin addra[6]
+CRITICAL WARNING: [Synth 8-4442] BlackBox module rammy has unconnected pin addra[5]
+CRITICAL WARNING: [Synth 8-4442] BlackBox module rammy has unconnected pin addra[4]
+CRITICAL WARNING: [Synth 8-4442] BlackBox module rammy has unconnected pin addra[3]
+CRITICAL WARNING: [Synth 8-4442] BlackBox module rammy has unconnected pin addra[2]
+CRITICAL WARNING: [Synth 8-4442] BlackBox module rammy has unconnected pin addra[1]
+CRITICAL WARNING: [Synth 8-4442] BlackBox module rammy has unconnected pin addra[0]
+CRITICAL WARNING: [Synth 8-4442] BlackBox module rammy has unconnected pin dina[7]
+CRITICAL WARNING: [Synth 8-4442] BlackBox module rammy has unconnected pin dina[6]
+CRITICAL WARNING: [Synth 8-4442] BlackBox module rammy has unconnected pin dina[5]
+CRITICAL WARNING: [Synth 8-4442] BlackBox module rammy has unconnected pin dina[4]
+CRITICAL WARNING: [Synth 8-4442] BlackBox module rammy has unconnected pin dina[3]
+CRITICAL WARNING: [Synth 8-4442] BlackBox module rammy has unconnected pin dina[2]
+CRITICAL WARNING: [Synth 8-4442] BlackBox module rammy has unconnected pin dina[1]
+CRITICAL WARNING: [Synth 8-4442] BlackBox module rammy has unconnected pin dina[0]
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 1209.984 ; gain = 174.066
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 1209.984 ; gain = 174.066
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 1209.984 ; gain = 174.066
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 1209.984 ; gain = 174.066
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 1209.984 ; gain = 174.066
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 1209.984 ; gain = 174.066
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++------+--------------+----------+
+|      |BlackBox name |Instances |
++------+--------------+----------+
+|1     |image_dp_ram  |         1|
++------+--------------+----------+
+
+Report Cell Usage: 
++------+-------------+------+
+|      |Cell         |Count |
++------+-------------+------+
+|1     |image_dp_ram |     1|
+|2     |BUFG         |     2|
+|3     |CARRY4       |     9|
+|4     |LUT1         |     6|
+|5     |LUT2         |    14|
+|6     |LUT3         |     6|
+|7     |LUT4         |    24|
+|8     |LUT5         |    21|
+|9     |LUT6         |    48|
+|10    |FDCE         |    44|
+|11    |FDRE         |   116|
+|12    |FDSE         |     4|
+|13    |IBUF         |     4|
+|14    |OBUF         |    40|
+|15    |OBUFT        |     1|
++------+-------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 1209.984 ; gain = 174.066
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 24 critical warnings and 1 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:21 ; elapsed = 00:00:28 . Memory (MB): peak = 1209.984 ; gain = 53.746
+Synthesis Optimization Complete : Time (s): cpu = 00:00:30 ; elapsed = 00:00:30 . Memory (MB): peak = 1209.984 ; gain = 174.066
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1218.844 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 9 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1218.844 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
 INFO: [Common 17-83] Releasing license: Synthesis
-12 Infos, 0 Warnings, 0 Critical Warnings and 6 Errors encountered.
-synth_design failed
-ERROR: [Common 17-69] Command failed: Synthesis failed - please see the console or run log file for details
-INFO: [Common 17-206] Exiting Vivado at Mon Nov 14 23:18:03 2022...
+32 Infos, 9 Warnings, 24 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:36 ; elapsed = 00:00:38 . Memory (MB): peak = 1218.844 ; gain = 182.926
+INFO: [Common 17-1381] The checkpoint 'C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.runs/synth_1/top.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file top_utilization_synth.rpt -pb top_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Tue Nov 15 21:27:35 2022...

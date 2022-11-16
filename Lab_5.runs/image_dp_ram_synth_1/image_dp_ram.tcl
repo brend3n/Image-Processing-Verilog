@@ -71,6 +71,8 @@ proc create_report { reportName command } {
 }
 OPTRACE "image_dp_ram_synth_1" START { ROLLUP_AUTO }
 set_param chipscope.maxJobs 2
+set_param xicom.use_bs_reader 1
+set_msg_config -id {Common 17-41} -limit 10000000
 set_param project.vivado.isBlockSynthRun true
 set_msg_config -msgmgr_mode ooc_run
 OPTRACE "Creating in-memory project" START { }
@@ -90,10 +92,8 @@ set_property ip_output_repo {c:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FP
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
-read_ip -quiet {{C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/ip/image_dp_ram/image_dp_ram.xci}}
-set_property used_in_synthesis 1 [get_files -all {{C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/ip/image_dp_ram/sim/image_dp_ram.v}}]
-set_property used_in_implementation 1 [get_files -all {{C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/ip/image_dp_ram/sim/image_dp_ram.v}}]
-set_property used_in_implementation false [get_files -all {{c:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/ip/image_dp_ram/image_dp_ram_ooc.xdc}}]
+read_ip -quiet {{c:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/ip/image_dp_ram_1/image_dp_ram.xci}}
+set_property used_in_implementation false [get_files -all {{c:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/ip/image_dp_ram_1/image_dp_ram_ooc.xdc}}]
 
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
@@ -107,11 +107,47 @@ foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
 read_xdc dont_touch.xdc
 set_property used_in_implementation false [get_files dont_touch.xdc]
 set_param ips.enableIPCacheLiteLoad 1
+OPTRACE "Configure IP Cache" START { }
+
+set cached_ip [config_ip_cache -export -no_bom  -dir {C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.runs/image_dp_ram_synth_1} -new_name image_dp_ram -ip [get_ips image_dp_ram]]
+
+OPTRACE "Configure IP Cache" END { }
+if { $cached_ip eq {} } {
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }
 synth_design -top image_dp_ram -part xc7a35tcpg236-1 -mode out_of_context
 OPTRACE "synth_design" END { }
+OPTRACE "Write IP Cache" START { }
+
+#---------------------------------------------------------
+# Generate Checkpoint/Stub/Simulation Files For IP Cache
+#---------------------------------------------------------
+# disable binary constraint mode for IPCache checkpoints
+set_param constraints.enableBinaryConstraints false
+
+catch {
+ write_checkpoint -force -noxdef -rename_prefix image_dp_ram_ image_dp_ram.dcp
+
+ set ipCachedFiles {}
+ write_verilog -force -mode synth_stub -rename_top decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix -prefix decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_ image_dp_ram_stub.v
+ lappend ipCachedFiles image_dp_ram_stub.v
+
+ write_vhdl -force -mode synth_stub -rename_top decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix -prefix decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_ image_dp_ram_stub.vhdl
+ lappend ipCachedFiles image_dp_ram_stub.vhdl
+
+ write_verilog -force -mode funcsim -rename_top decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix -prefix decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_ image_dp_ram_sim_netlist.v
+ lappend ipCachedFiles image_dp_ram_sim_netlist.v
+
+ write_vhdl -force -mode funcsim -rename_top decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix -prefix decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_ image_dp_ram_sim_netlist.vhdl
+ lappend ipCachedFiles image_dp_ram_sim_netlist.vhdl
+ set TIME_taken [expr [clock seconds] - $TIME_start]
+
+ if { [get_msg_config -count -severity {CRITICAL WARNING}] == 0 } {
+  config_ip_cache -add -dcp image_dp_ram.dcp -move_files $ipCachedFiles -use_project_ipc  -synth_runtime $TIME_taken  -ip [get_ips image_dp_ram]
+ }
+OPTRACE "Write IP Cache" END { }
+}
 
 rename_ref -prefix_all image_dp_ram_
 
@@ -125,45 +161,66 @@ create_report "image_dp_ram_synth_1_synth_report_utilization_0" "report_utilizat
 OPTRACE "synth reports" END { }
 
 if { [catch {
-  file copy -force {C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.runs/image_dp_ram_synth_1/image_dp_ram.dcp} {c:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/ip/image_dp_ram/image_dp_ram.dcp}
-} _RESULT ] } { 
-  send_msg_id runtcl-3 error "ERROR: Unable to successfully create or copy the sub-design checkpoint file."
-  error "ERROR: Unable to successfully create or copy the sub-design checkpoint file."
-}
-
-if { [catch {
-  write_verilog -force -mode synth_stub {c:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/ip/image_dp_ram/image_dp_ram_stub.v}
+  write_verilog -force -mode synth_stub {C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.runs/image_dp_ram_synth_1/image_dp_ram_stub.v}
 } _RESULT ] } { 
   puts "CRITICAL WARNING: Unable to successfully create a Verilog synthesis stub for the sub-design. This may lead to errors in top level synthesis of the design. Error reported: $_RESULT"
 }
 
 if { [catch {
-  write_vhdl -force -mode synth_stub {c:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/ip/image_dp_ram/image_dp_ram_stub.vhdl}
+  write_vhdl -force -mode synth_stub {C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.runs/image_dp_ram_synth_1/image_dp_ram_stub.vhdl}
 } _RESULT ] } { 
   puts "CRITICAL WARNING: Unable to successfully create a VHDL synthesis stub for the sub-design. This may lead to errors in top level synthesis of the design. Error reported: $_RESULT"
 }
 
 if { [catch {
-  write_verilog -force -mode funcsim {c:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/ip/image_dp_ram/image_dp_ram_sim_netlist.v}
+  write_verilog -force -mode funcsim {C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.runs/image_dp_ram_synth_1/image_dp_ram_sim_netlist.v}
 } _RESULT ] } { 
   puts "CRITICAL WARNING: Unable to successfully create the Verilog functional simulation sub-design file. Post-Synthesis Functional Simulation with this file may not be possible or may give incorrect results. Error reported: $_RESULT"
 }
 
 if { [catch {
-  write_vhdl -force -mode funcsim {c:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/ip/image_dp_ram/image_dp_ram_sim_netlist.vhdl}
+  write_vhdl -force -mode funcsim {C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.runs/image_dp_ram_synth_1/image_dp_ram_sim_netlist.vhdl}
 } _RESULT ] } { 
   puts "CRITICAL WARNING: Unable to successfully create the VHDL functional simulation sub-design file. Post-Synthesis Functional Simulation with this file may not be possible or may give incorrect results. Error reported: $_RESULT"
 }
 
+
+} else {
+
+
+}; # end if cached_ip 
+
+add_files {{C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.runs/image_dp_ram_synth_1/image_dp_ram_stub.v}} -of_objects [get_files {{c:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/ip/image_dp_ram_1/image_dp_ram.xci}}]
+
+add_files {{C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.runs/image_dp_ram_synth_1/image_dp_ram_stub.vhdl}} -of_objects [get_files {{c:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/ip/image_dp_ram_1/image_dp_ram.xci}}]
+
+add_files {{C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.runs/image_dp_ram_synth_1/image_dp_ram_sim_netlist.v}} -of_objects [get_files {{c:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/ip/image_dp_ram_1/image_dp_ram.xci}}]
+
+add_files {{C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.runs/image_dp_ram_synth_1/image_dp_ram_sim_netlist.vhdl}} -of_objects [get_files {{c:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/ip/image_dp_ram_1/image_dp_ram.xci}}]
+
+add_files {{C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.runs/image_dp_ram_synth_1/image_dp_ram.dcp}} -of_objects [get_files {{c:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/ip/image_dp_ram_1/image_dp_ram.xci}}]
+
 if {[file isdir {C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.ip_user_files/ip/image_dp_ram}]} {
   catch { 
-    file copy -force {{c:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/ip/image_dp_ram/image_dp_ram_stub.v}} {C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.ip_user_files/ip/image_dp_ram}
+    file copy -force {{C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.runs/image_dp_ram_synth_1/image_dp_ram_sim_netlist.v}} {C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.ip_user_files/ip/image_dp_ram}
   }
 }
 
 if {[file isdir {C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.ip_user_files/ip/image_dp_ram}]} {
   catch { 
-    file copy -force {{c:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/ip/image_dp_ram/image_dp_ram_stub.vhdl}} {C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.ip_user_files/ip/image_dp_ram}
+    file copy -force {{C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.runs/image_dp_ram_synth_1/image_dp_ram_sim_netlist.vhdl}} {C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.ip_user_files/ip/image_dp_ram}
+  }
+}
+
+if {[file isdir {C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.ip_user_files/ip/image_dp_ram}]} {
+  catch { 
+    file copy -force {{C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.runs/image_dp_ram_synth_1/image_dp_ram_stub.v}} {C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.ip_user_files/ip/image_dp_ram}
+  }
+}
+
+if {[file isdir {C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.ip_user_files/ip/image_dp_ram}]} {
+  catch { 
+    file copy -force {{C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.runs/image_dp_ram_synth_1/image_dp_ram_stub.vhdl}} {C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.ip_user_files/ip/image_dp_ram}
   }
 }
 file delete __synthesis_is_running__

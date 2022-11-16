@@ -28,7 +28,11 @@ module top
     input PS2Clk,           // PS2 Keyboard clk,
 	output hsync,           // VGA horizontal sync
 	output vsync,           // VGA vertical sync
-	output [11:0] rgb       // VGA 12 FPGA pins for RGB(4 per color)
+	output [11:0] rgb,      // VGA 12 FPGA pins for RGB(4 per color)
+	output [3:0] an,        // seven segment anodes
+    output [0:6] seg,       // seven segement segment
+    output [14:0] led,      // Output LEDs
+    output tx               // Not sure if this is needed
 );
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -37,7 +41,7 @@ module top
     
     // A
     wire clka;
-    reg ena = 0;
+    reg ena = 1;
     reg wea = 0;
     reg  [15:0] addra;
     reg  [7:0]  dina;
@@ -70,33 +74,29 @@ module top
     
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     reg key_pressed = 0;  // Start Low pass filtering
-  
-    assign clka = clk_100MHz;
-    assign clkb = clk_100MHz;
-    
-//    image_dp_ram rammy_ram (
-//      .clka(clka),    // input wire clka
-//      .ena(ena),      // input wire ena
-//      .wea(wea),      // input wire [0 : 0] wea
-//      .addra(addra),  // input wire [15 : 0] addra
-//      .dina(dina),    // input wire [7 : 0] dina
-//      .douta(douta),  // output wire [7 : 0] douta
-//      .clkb(clkb),    // input wire clkb
-//      .enb(enb),      // input wire enb
-//      .web(),      // input wire [0 : 0] web
-//      .addrb(addrb),  // input wire [15 : 0] addrb
-//      .dinb(dinb),    // input wire [7 : 0] dinb
-//      .doutb(doutb)  // output wire [7 : 0] doutb
-//    );
-
-    true_dual_port_ram dp_ram(
-        .clka(clka),.clkb(clkb),
-        .ena(ena),.enb(enb),
-        .wea(wea),.web(web),
-        .addra(addra),.addrb(addrb),
-        .dia(dina),.dib(dinb),
-        .doa(douta),.dob(doutb)
+   
+   
+   // Write to Port A, Read from Port B
+    image_dp_ram rammy (
+      .clka(clk_100MHz),    // input wire clka
+      .ena(ena),      // input wire ena
+      .wea(wea),      // input wire [0 : 0] wea
+      .addra(addra),  // input wire [15 : 0] addra
+      .dina(dina),    // input wire [7 : 0] dina
+      .clkb(clk_100MHz),    // input wire clkb
+      .enb(enb),      // input wire enb
+      .addrb(addrb),  // input wire [15 : 0] addrb
+      .doutb(doutb)  // output wire [7 : 0] doutb
     );
+
+//    true_dual_port_ram dp_ram(
+//        .clka(clk_100MHz),.clkb(clk_100MHz),
+//        .ena(ena),.enb(enb),
+//        .wea(wea),.web(web),
+//        .addra(addra),.addrb(addrb),
+//        .dia(dina),.dib(dinb),
+//        .doa(douta),.dob(doutb)
+//    );
     
     // Instantiate keyboard interface
     keyboard_interface keyb_int(
@@ -110,7 +110,7 @@ module top
         .data(data_wire)
     );
     
-        // Instantiate VGA Controller
+    // Instantiate VGA Controller
     vga_controller vga_c(
         .clk_100MHz(clk_100MHz), 
         .reset(reset), 
@@ -131,14 +131,25 @@ module top
         end
     end
     
+    // Get Address
+    always @(posedge clk_100MHz) 
+    begin
+        addrb <= (x_pos) + (y_pos * 256);
+    end
+    
     
     // Drawing pixel data to screen
     always @ (posedge clk_100MHz) 
     begin
         if(pixel_clk)
-        begin                                 
+        begin
+                                             
             rgb_reg <= doutb;
         end // if pixel_clk
+        else
+        begin
+            rgb_reg <= 8'b00000000;
+        end
     end // always
         
     // Update pixel color data
