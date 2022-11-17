@@ -124,7 +124,7 @@ module top
         .y(y_pos)
     );
 // Code test for Displaying pixel data 
-/*    
+    
     // Get Address
     always @(posedge clk_100MHz) 
     begin
@@ -139,19 +139,19 @@ module top
         begin                   
             if ( ((x_pos >= X_OFFSET) && (x_pos <= X_OFFSET + 256 -1)) && ((y_pos >= Y_OFFSET) && (y_pos <= Y_OFFSET + 256-1)))
             begin            
-//                rgb_reg[3:0] <= {0,doutb[2:0]};
-//                rgb_reg[7:4] <= {0,doutb[5:3]};
-//                rgb_reg[11:8] <= {0,doutb[7:6],0};
-                rgb_reg <= doutb;
+                rgb_reg[3:0]  = doutb[7:4]; // Upper 4-bits of data
+                rgb_reg[7:4]  = doutb[7:4];
+                rgb_reg[11:8] = doutb[7:4];
+//                rgb_reg <= doutb;
                 
             end                    
             else     
-                rgb_reg <= 8'b00000000;                          
+                rgb_reg <= 12'b00000000;                          
            
         end // if pixel_clk
         else
         begin
-            rgb_reg <= 8'b00000000;
+            rgb_reg <= 12'b00000000;
         end
     end // always
         
@@ -159,8 +159,9 @@ module top
     assign rgb = (video_on) ? rgb_reg : 12'b000000000000;
        
 endmodule
-*/
 
+
+/*
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Variables
  
@@ -448,5 +449,6 @@ endmodule
                 end
             end
         endcase
-     end
+     end 
 endmodule
+*/    
