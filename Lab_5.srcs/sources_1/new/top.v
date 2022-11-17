@@ -39,21 +39,42 @@ module top
     // RAM //
     ////////
     
+////////////////////////////
+    // Display Data RAM
+    
+    // Write to Port A, Read from Port B    
+    
     // A
-    wire clka;
-    reg ena = 1;
-    reg wea = 0;
-    reg  [15:0] addra;
-    reg  [7:0]  dina;
-    wire [7:0]  douta;
+    wire display_clka;
+    reg  display_ena = 1;
+    reg  display_wea = 0;
+    reg  [15:0] display_addra;
+    reg  [7:0]  display_dina;
     
     // B
-    wire clkb;
-    reg enb = 1;
-    reg web = 0;
-    reg  [15:0] addrb;
-//    reg  [7:0]  dinb;
-    wire [7:0]  doutb;
+    wire display_clkb;
+    reg  display_enb = 1;   
+    reg  [15:0] display_addrb;
+    wire [7:0] display_doutb;
+////////////////////////////    
+////////////////////////////
+    // Filtered Data RAM
+        
+    // Write to Port A, Read from Port B
+    
+    // Port A
+    wire filtered_clka;
+    reg filtered_ena = 1;
+    reg filtered_wea = 0;
+    reg  [15:0] filtered_addra;
+    reg  [7:0]  filtered_dina;    
+    
+    // Port B
+    wire filtered_clkb;
+    reg filtered_enb = 1;    
+    reg  [15:0] filtered_addrb;
+    wire [7:0]  filtered_doutb;
+////////////////////////////    
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
     // VGA //
     /////////
@@ -79,26 +100,30 @@ module top
    
    
    // Write to Port A, Read from Port B
-    image_dp_ram rammy (
+    image_dp_ram display (
       .clka(clk_100MHz),    // input wire clka
-      .ena(ena),      // input wire ena
-      .wea(wea),      // input wire [0 : 0] wea
-      .addra(addra),  // input wire [15 : 0] addra
-      .dina(dina),    // input wire [7 : 0] dina
+      .ena(display_ena),      // input wire ena
+      .wea(display_wea),      // input wire [0 : 0] wea
+      .addra(display_addra),  // input wire [15 : 0] addra
+      .dina(display_dina),    // input wire [7 : 0] dina
       .clkb(clk_100MHz),    // input wire clkb
-      .enb(enb),      // input wire enb
-      .addrb(addrb),  // input wire [15 : 0] addrb
-      .doutb(doutb)  // output wire [7 : 0] doutb
+      .enb(display_enb),      // input wire enb
+      .addrb(display_addrb),  // input wire [15 : 0] addrb
+      .doutb(display_doutb)  // output wire [7 : 0] doutb
     );
-
-//    true_dual_port_ram dp_ram(
-//        .clka(clk_100MHz),.clkb(clk_100MHz),
-//        .ena(ena),.enb(enb),
-//        .wea(wea),.web(web),
-//        .addra(addra),.addrb(addrb),
-//        .dia(dina),.dib(dinb),
-//        .doa(douta),.dob(doutb)
-//    );
+    
+    // Write to Port A, Read from Port B
+    image_dp_ram filtered (
+      .clka(clk_100MHz),    // input wire clka
+      .ena(filtered_ena),      // input wire ena
+      .wea(filtered_wea),      // input wire [0 : 0] wea
+      .addra(filtered_addra),  // input wire [15 : 0] addra
+      .dina(filtered_dina),    // input wire [7 : 0] dina
+      .clkb(clk_100MHz),    // input wire clkb
+      .enb(filtered_enb),      // input wire enb
+      .addrb(filtered_addrb),  // input wire [15 : 0] addrb
+      .doutb(filtered_doutb)  // output wire [7 : 0] doutb
+    );
     
     // Instantiate keyboard interface
     keyboard_interface keyb_int(
@@ -123,12 +148,13 @@ module top
         .x(x_pos), 
         .y(y_pos)
     );
+/*
 // Code test for Displaying pixel data 
     
     // Get Address
     always @(posedge clk_100MHz) 
     begin
-        addra <= (x_pos) + (y_pos * 256);
+        addra <= (x_pos - X_OFFSET) + ((y_pos-Y_OFFSET) * 256);
         addrb <= (x_pos) + (y_pos * 256);
     end
     
@@ -159,9 +185,9 @@ module top
     assign rgb = (video_on) ? rgb_reg : 12'b000000000000;
        
 endmodule
+*/
 
 
-/*
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Variables
  
@@ -183,14 +209,14 @@ endmodule
     reg [7:0] filter_pixel; // TODO: Same with this shit
     
     //Ram State Machine
-    reg [1:0] ram_state;
+    reg [2:0] ram_state;
     reg [15:0] counter;
        
     // Display State Machine
     reg [3:0] write_state;    
     
     // TODO: Not sure if need to move these to the bottom or else
-    assign keyboard_pressed = (data == 0)     ? 1 : 0;
+    assign keyboard_pressed = (data_wire != 0)? 1 : 0;
     assign scan_start = (Keyboard_State == 1) ? 1 : 0;
     assign scan_end = (scan_state == 65355)   ? 1 : 0;
     assign filter_start = (scan_state == 1)   ? 1 : 0;
@@ -218,7 +244,7 @@ endmodule
             15'd2:begin  // Done scanning
                 if (scan_end == 1)
                 begin
-                      Keyboard_State <= Keyboard_State;   
+                      Keyboard_State <= 0; // Go back to the beginning   
                 end            
             end
             15'd65000: // Example delay until reset keyboard state machine
@@ -245,33 +271,36 @@ endmodule
             begin 
                 if( (scan_start == 1) || (scan_state != 0)) // We want to start scan state machine when scan start is 1
                 begin
-                    scan_state <= 1;
+                    scan_state <= scan_state + 1;
                 end
                 
-                //////////////////////////////
-                // Not sure about this part
-                if (scan_state[17:2] == 65535)
-                begin
-                    scan_state <= 0;
-                end
-                scan_state <= 1;
-                //////////////////////////////
+//                //////////////////////////////
+//                // Not sure about this part
+//                if (scan_state[17:2] == 65535)
+//                begin
+//                    scan_state <= 0;
+//                end
+//                scan_state <= 1;
+//                //////////////////////////////
             end
             2'd1:
             begin
-                scan_state <= 2;
+                scan_state <= scan_state + 1;
             end
             2'd2: // wait until filtering finished
             begin
+            // TODO: Not sure if I need to still increment or go to another state or if we just wait
                 if(filter_end == 1)
                 begin
-                    scan_state <= 3; // Go to next state once filtering done
+                    scan_state <= scan_state + 1; // Go to next state once filtering done
                 end
             end
             2'd3:
             begin
-                scan_state <= 0; // Go back to first state
+                scan_state <= scan_state + 1; // Go back to first state
+                
             end
+     
         endcase
     end
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -286,66 +315,71 @@ endmodule
                 if(filter_start == 1)
                 begin
                     // Go to the next state
-                    filter_state <= 1;
+                    filter_state <= 1;   
+                                    
+                    filtered_enb <= 1;                    
+//                    filtered_wea <= 1; // Start writing
                 end
             end
             4'd1:
             begin
                 // TODO: Not sure about the scan_state[17:2]
-                addra <= scan_state[17:2] - 256 - 1; // A = Pixel_pos - NUM_COLS - 1
+//                addra <= scan_state[17:2] - 256 - 1; // A = Pixel_pos - NUM_COLS - 1
+                filtered_addrb <= scan_state[17:2] - 256 - 1; // A = Pixel_pos - NUM_COLS - 1
                 filter_state <= 2;
             end
             4'd2:
             begin
-               pixel[0] <= douta; // A
-               addra <= addra + 1;// B = Pixel_pos - NUM_COLS = A + 1 
+//               pixel[0] <= douta; // A
+                 pixel[0] <= filtered_doutb; // A
+               filtered_addrb <= filtered_addrb + 1;// B = Pixel_pos - NUM_COLS = A + 1 
                filter_state <= 3;
             end
             4'd3:
             begin
-                pixel[1] <= douta; // B
-                addra <= addra + 1; // C = Pixel_pos - NUM_COLS + 1= B +1
+                pixel[1] <= filtered_doutb; // B
+                filtered_addrb <= filtered_addrb + 1; // C = Pixel_pos - NUM_COLS + 1= B +1
                 filter_state <= 4;        
             end
             4'd4:
             begin
-                pixel[2] <= douta; // C
-                addra <= addra + 256 - 2; // D: Go down one row (256) and back 2   
+                pixel[2] <= filtered_doutb; // C
+                filtered_addrb <= filtered_addrb + 256 - 2; // D: Go down one row (256) and back 2   
                 filter_state <= 5;
             end
             4'd5:
             begin
-                pixel[3] <= douta; // D
-                addra <= addra + 1; // E: Go to the next one over   (Middle pixel)
+                pixel[3] <= filtered_doutb; // D
+                filtered_addrb <= filtered_addrb + 1; // E: Go to the next one over   (Middle pixel)
                 filter_state <= 6;
             end
             4'd6:
             begin
-                pixel[4] <= douta; // E
-                addra <= addra + 1; // F: Go to the next one over    
+                pixel[4] <= filtered_doutb; // E
+                filtered_addrb <= filtered_addrb + 1; // F: Go to the next one over    
                 filter_state <= 7;
             end
             4'd7:
             begin
-                pixel[5] <= douta; // F
-                addra <= addra + 256 - 2; // G: Go down one row (256) and back 2   
+                pixel[5] <= filtered_doutb; // F
+                filtered_addrb <= filtered_addrb + 256 - 2; // G: Go down one row (256) and back 2   
                 filter_state <= 8;
             end
             4'd8:
             begin
-                pixel[6] <= douta; // G
-                addra <= addra + 1; // H: Go to the next one over   
+                pixel[6] <= filtered_doutb; // G
+                filtered_addrb <= filtered_addrb + 1; // H: Go to the next one over   
                 filter_state <= 9;
             end
             4'd9:
             begin
-                pixel[7] <= douta; // H
-                addra <= addra + 1; // I: Go to the next one over   
+                pixel[7] <= filtered_doutb; // H
+                filtered_addrb <= filtered_addrb + 1; // I: Go to the next one over   
                 filter_state <= 10;
             end            
             4'd10:
             begin
-                pixel[8] <= douta; // I
+                pixel[8] <= filtered_doutb; // I
                 filter_state <= 11;
             end
             4'd11:
@@ -354,20 +388,21 @@ endmodule
                 filter_pixel <= ((pixel[0] + pixel[1] + pixel[2] + pixel[3] + pixel[4] +  pixel[5] + pixel[6] + pixel[7] + pixel[8]) * 7) >> 6;
                 
                 //TODO: I think this is wrong.                
-                enb <= 1; //  write enable pin for second RAM
+//                enb <= 1; //  write enable pin for second RAM
+
+                filtered_wea <= 1; // Start writing
                 filter_state <= 12;
             end
             4'd12:
             begin
-                addrb <= addra - 257; // TODO: Not sure what this does
+                filtered_addra <= filtered_addrb - 256 - 1; // Go to the middle pixel
 //                dinb2 <= filter_pixel;
-                dina <= filter_pixel;
+                filtered_dina <= filter_pixel;
                 filter_state <= 13;
             end
             4'd13:
             begin
-//                enab2 <= 0;
-                ena <= 1;
+                filtered_wea <= 0; // Done writing
                 filter_state <= 14;
             end
             4'd14:
@@ -386,36 +421,58 @@ endmodule
 
     always @(posedge clk_100MHz) 
     begin
-        if (scan_end == 1) 
-        begin
            case (ram_state)
-               2'd0:
+               3'd0:
                begin
-                  if (write_end == 1)
-                  begin
-                       addra <= counter;
-                       addrb <= counter;
-                       ram_state <= 1;
-                       enb <= 1;
-                   end
+                  if (scan_end == 1)
+                  begin                       
+                       ram_state <= 1;                       
+                  end
+                               
+                  // Dont write from filtered RAM, only read from it.                   
+                  filtered_wea <= 0;
+                  filtered_enb <= 1;
+                  
+                  // Read and write from Display RAM
+                  display_ena <= 1;
+                  display_wea <= 1;
+                  
                end
-               2'd1:
+               3'd1:
+               begin                                      
+                   display_addra <= counter;
+                   filtered_addrb <= counter;
+                   ram_state <= 1;                                              
+               end
+               3'd2:
                begin
-//                   dinb <= dina;
+                   display_dina <= filtered_doutb;
                    counter <= counter + 1;
                    ram_state <= 2;
                end
-               2'd2:
-               begin
-                   enb <= 0;
-                   ram_state <= 3;
-               end
                2'd3:
                begin
-                   ram_state <= 0;
+                   // opposite logic from the first state                   
+                   filtered_wea <= 0;
+                   filtered_enb <= 0;
+                  
+                   // Read and write from Display RAM
+                   display_ena <= 0;
+                   display_wea <= 0;
+                   ram_state <= 3;
+               end
+               3'd4:
+               begin
+                   if (counter == 65535)
+                   begin
+                       ram_state <= 0;
+                   end
+                   else
+                   begin
+                       ram_state <= 1;
+                   end
                end            
            endcase
-        end
     end 
  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  // Display state machine
@@ -425,7 +482,7 @@ endmodule
         case (write_state)
             4'd0:
             begin
-                addrb <= x_pos + (y_pos * 256);
+                addrb <= (x_pos - X_OFFSET) + ((y_pos - Y_OFFSET) * 256);
                 write_state <= 1;
             end
             4'd1:
@@ -451,4 +508,4 @@ endmodule
         endcase
      end 
 endmodule
-*/    
+   
