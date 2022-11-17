@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
-| Date             : Tue Nov 15 21:28:52 2022
+| Date             : Wed Nov 16 22:18:13 2022
 | Host             : Chungus running 64-bit major release  (build 9200)
 | Command          : report_power -file top_power_routed.rpt -pb top_power_summary_routed.pb -rpx top_power_routed.rpx
 | Design           : top
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.106        |
+| Total On-Chip Power (W)  | 0.105        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.033        |
+| Dynamic (W)              | 0.032        |
 | Device Static (W)        | 0.073        |
 | Effective TJA (C/W)      | 5.0          |
 | Max Ambient (C)          | 84.5         |
@@ -53,17 +53,17 @@ Table of Contents
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |     0.002 |        3 |       --- |             --- |
-| Slice Logic    |    <0.001 |      338 |       --- |             --- |
-|   LUT as Logic |    <0.001 |       99 |     20800 |            0.48 |
+| Slice Logic    |    <0.001 |      347 |       --- |             --- |
+|   LUT as Logic |    <0.001 |      112 |     20800 |            0.54 |
 |   BUFG         |    <0.001 |        1 |        32 |            3.13 |
 |   Register     |    <0.001 |      164 |     41600 |            0.39 |
 |   CARRY4       |    <0.001 |        9 |      8150 |            0.11 |
-|   Others       |     0.000 |       37 |       --- |             --- |
-| Signals        |    <0.001 |      259 |       --- |             --- |
+|   Others       |     0.000 |       29 |       --- |             --- |
+| Signals        |    <0.001 |      268 |       --- |             --- |
 | Block RAM      |     0.029 |       16 |        50 |           32.00 |
-| I/O            |     0.002 |       45 |       106 |           42.45 |
+| I/O            |    <0.001 |       45 |       106 |           42.45 |
 | Static Power   |     0.073 |          |           |                 |
-| Total          |     0.106 |          |           |                 |
+| Total          |     0.105 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -142,7 +142,7 @@ Table of Contents
 +------------------------+-----------+
 | Name                   | Power (W) |
 +------------------------+-----------+
-| top                    |     0.033 |
+| top                    |     0.032 |
 |   keyb_int             |     0.001 |
 |   rammy                |     0.029 |
 |     U0                 |     0.029 |
