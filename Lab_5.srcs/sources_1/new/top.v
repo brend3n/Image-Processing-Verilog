@@ -154,8 +154,8 @@ module top
     // Get Address
     always @(posedge clk_100MHz) 
     begin
-        addra <= (x_pos - X_OFFSET) + ((y_pos-Y_OFFSET) * 256);
-        addrb <= (x_pos) + (y_pos * 256);
+//        addra <= (x_pos - X_OFFSET) + ((y_pos-Y_OFFSET) * 256);
+        display_addrb <= (x_pos - X_OFFSET) + ((y_pos-Y_OFFSET) * 256);
     end
     
     // Drawing pixel data to screen
@@ -165,9 +165,9 @@ module top
         begin                   
             if ( ((x_pos >= X_OFFSET) && (x_pos <= X_OFFSET + 256 -1)) && ((y_pos >= Y_OFFSET) && (y_pos <= Y_OFFSET + 256-1)))
             begin            
-                rgb_reg[3:0]  = doutb[7:4]; // Upper 4-bits of data
-                rgb_reg[7:4]  = doutb[7:4];
-                rgb_reg[11:8] = doutb[7:4];
+                rgb_reg[3:0]  = display_doutb[7:4]; // Upper 4-bits of data
+                rgb_reg[7:4]  = display_doutb[7:4];
+                rgb_reg[11:8] = display_doutb[7:4];
 //                rgb_reg <= doutb;
                 
             end                    
@@ -482,7 +482,7 @@ endmodule
         case (write_state)
             4'd0:
             begin
-                addrb <= (x_pos - X_OFFSET) + ((y_pos - Y_OFFSET) * 256);
+                display_addrb <= (x_pos - X_OFFSET) + ((y_pos - Y_OFFSET) * 256);
                 write_state <= 1;
             end
             4'd1:
@@ -493,9 +493,9 @@ endmodule
                     if (((x_pos >= X_OFFSET) && (x_pos <= X_OFFSET + 256 -1)) && ((y_pos >= Y_OFFSET) && (y_pos <= Y_OFFSET + 256-1))) 
                     begin
                         // Write color data                    
-                        rgb_reg[3:0]  = doutb[7:4]; // Upper 4-bits of data
-                        rgb_reg[7:4]  = doutb[7:4];
-                        rgb_reg[11:8] = doutb[7:4];
+                        rgb_reg[3:0]  = display_doutb[7:4]; // Upper 4-bits of data
+                        rgb_reg[7:4]  = display_doutb[7:4];
+                        rgb_reg[11:8] = display_doutb[7:4];
                         write_state <= 0;
                     end
                     else
@@ -508,4 +508,3 @@ endmodule
         endcase
      end 
 endmodule
-   
