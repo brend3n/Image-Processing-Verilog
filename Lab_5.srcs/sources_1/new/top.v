@@ -224,9 +224,9 @@ endmodule
     
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
 // Keyboard State Machine     
-    
+    always @ (posedge clk_100MHz) begin    
     // Keyboard State Machine
-    always @(posedge clk_100MHz) begin
+//    always @(posedge clk_100MHz) begin
         case (Keyboard_State)
             15'd0:
             begin
@@ -255,7 +255,7 @@ endmodule
                 Keyboard_State <= Keyboard_State + 1; // The width of the keyboardstate register is the delay in this state
             end       
         endcase
-    end
+//    end
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
     // Scan State Machine
     
@@ -263,7 +263,7 @@ endmodule
     // scan_state[17:2] for memory addresses <- increase after each finish filtering each pixel
     
     
-    always @(posedge clk_100MHz) begin
+//    always @(posedge clk_100MHz) begin
         case(scan_state[1:0])
             2'd0:
             begin 
@@ -300,13 +300,13 @@ endmodule
             end
      
         endcase
-    end
+//    end
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Filter State Machine
 
-    always @(posedge clk_100MHz) begin
+//    always @(posedge clk_100MHz) begin
         case (filter_state)
             4'd0:
             begin
@@ -413,13 +413,13 @@ endmodule
                 filter_state <= 0;
             end
         endcase
-    end
+//    end
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
 //Ram State Machine
 
-    always @(posedge clk_100MHz) 
-    begin
+//    always @(posedge clk_100MHz) 
+//    begin
            case (ram_state)
                3'd0:
                begin
@@ -472,12 +472,12 @@ endmodule
                    end
                end            
            endcase
-    end 
+//    end 
  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  // Display state machine
   
      
-     always @(posedge clk_100MHz) begin
+//     always @(posedge clk_100MHz) begin
         case (write_state)
             4'd0:
             begin
@@ -505,6 +505,6 @@ endmodule
                 end
             end
         endcase
-     end 
-
+//     end 
+    end
 endmodule
