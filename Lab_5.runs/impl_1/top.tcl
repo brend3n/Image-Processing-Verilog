@@ -114,7 +114,6 @@ proc step_failed { step } {
   close $ch
 }
 
-set_msg_config -id {Common 17-41} -limit 10000000
 
 OPTRACE "Implementation" START { ROLLUP_1 }
 OPTRACE "Phase: Init Design" START { ROLLUP_AUTO }
@@ -123,7 +122,6 @@ set ACTIVE_STEP init_design
 set rc [catch {
   create_msg_db init_design.pb
   set_param chipscope.maxJobs 2
-  set_param xicom.use_bs_reader 1
 OPTRACE "create in-memory project" START { }
   create_project -in_memory -part xc7a35tcpg236-1
   set_property board_part digilentinc.com:basys3:part0:1.1 [current_project]
@@ -139,7 +137,7 @@ OPTRACE "set parameters" START { }
 OPTRACE "set parameters" END { }
 OPTRACE "add files" START { }
   add_files -quiet {{C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.runs/synth_1/top.dcp}}
-  read_ip -quiet {{c:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/ip/image_dp_ram_1/image_dp_ram.xci}}
+  read_ip -quiet {{C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/ip/image_dp_ram_1/image_dp_ram.xci}}
 OPTRACE "read constraints: implementation" START { }
   read_xdc {{C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/constrs_1/new/const.xdc}}
 OPTRACE "read constraints: implementation" END { }

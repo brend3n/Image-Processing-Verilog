@@ -14,34 +14,22 @@ Command: link_design -top top -part xc7a35tcpg236-1
 Design is defaulting to srcset: sources_1
 Design is defaulting to constrset: constrs_1
 INFO: [Device 21-403] Loading part xc7a35tcpg236-1
-INFO: [Project 1-454] Reading design checkpoint 'C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.runs/impl_1/.Xil/Vivado-23496-Chungus/image_dp_ram_1/image_dp_ram.dcp' for cell 'display'
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.020 . Memory (MB): peak = 1035.762 ; gain = 0.000
+INFO: [Project 1-454] Reading design checkpoint 'C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.runs/impl_1/.Xil/Vivado-17576-Chungus/image_dp_ram_1/image_dp_ram.dcp' for cell 'display'
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.019 . Memory (MB): peak = 1034.719 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 105 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-479] Netlist was created with Vivado 2020.1
 INFO: [Project 1-570] Preparing netlist for logic optimization
 Parsing XDC File [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/constrs_1/new/const.xdc]
-WARNING: [Vivado 12-584] No ports matched 'led[15]'. [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/constrs_1/new/const.xdc:77]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/constrs_1/new/const.xdc:77]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'led[15]'. [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/constrs_1/new/const.xdc:78]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/constrs_1/new/const.xdc:78]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'dp'. [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/constrs_1/new/const.xdc:97]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/constrs_1/new/const.xdc:97]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'dp'. [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/constrs_1/new/const.xdc:98]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/constrs_1/new/const.xdc:98]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
 Finished Parsing XDC File [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/constrs_1/new/const.xdc]
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1035.762 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1034.719 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-8 Infos, 4 Warnings, 4 Critical Warnings and 0 Errors encountered.
+8 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
 link_design completed successfully
-link_design: Time (s): cpu = 00:00:08 ; elapsed = 00:00:10 . Memory (MB): peak = 1035.762 ; gain = 0.000
+link_design: Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1034.719 ; gain = 0.000
 Command: opt_design
 Attempting to get a license for feature 'Implementation' and/or device 'xc7a35t'
 INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7a35t'
@@ -50,31 +38,31 @@ Running DRC as a precondition to command opt_design
 Starting DRC Task
 INFO: [DRC 23-27] Running DRC with 2 threads
 ERROR: [DRC MDRV-1] Multiple Driver Nets: Net filtered_addrb[0] has multiple drivers: filtered_addrb_reg[0]/Q, and filtered_addrb_reg[0]__0/Q.
-ERROR: [DRC MDRV-1] Multiple Driver Nets: Net filtered_addrb[10] has multiple drivers: filtered_addrb_reg[10]/Q, and filtered_addrb_reg[10]__0/Q.
-ERROR: [DRC MDRV-1] Multiple Driver Nets: Net filtered_addrb[11] has multiple drivers: filtered_addrb_reg[11]/Q, and filtered_addrb_reg[11]__0/Q.
+ERROR: [DRC MDRV-1] Multiple Driver Nets: Net filtered_addrb[10] has multiple drivers: filtered_addrb_reg[10]__0/Q, and filtered_addrb_reg[10]/Q.
+ERROR: [DRC MDRV-1] Multiple Driver Nets: Net filtered_addrb[11] has multiple drivers: filtered_addrb_reg[11]__0/Q, and filtered_addrb_reg[11]/Q.
 ERROR: [DRC MDRV-1] Multiple Driver Nets: Net filtered_addrb[12] has multiple drivers: filtered_addrb_reg[12]/Q, and filtered_addrb_reg[12]__0/Q.
 ERROR: [DRC MDRV-1] Multiple Driver Nets: Net filtered_addrb[13] has multiple drivers: filtered_addrb_reg[13]/Q, and filtered_addrb_reg[13]__0/Q.
-ERROR: [DRC MDRV-1] Multiple Driver Nets: Net filtered_addrb[14] has multiple drivers: filtered_addrb_reg[14]__0/Q, and filtered_addrb_reg[14]/Q.
+ERROR: [DRC MDRV-1] Multiple Driver Nets: Net filtered_addrb[14] has multiple drivers: filtered_addrb_reg[14]/Q, and filtered_addrb_reg[14]__0/Q.
 ERROR: [DRC MDRV-1] Multiple Driver Nets: Net filtered_addrb[15] has multiple drivers: filtered_addrb_reg[15]/Q, and filtered_addrb_reg[15]__0/Q.
 ERROR: [DRC MDRV-1] Multiple Driver Nets: Net filtered_addrb[1] has multiple drivers: filtered_addrb_reg[1]__0/Q, and filtered_addrb_reg[1]/Q.
-ERROR: [DRC MDRV-1] Multiple Driver Nets: Net filtered_addrb[2] has multiple drivers: filtered_addrb_reg[2]__0/Q, and filtered_addrb_reg[2]/Q.
+ERROR: [DRC MDRV-1] Multiple Driver Nets: Net filtered_addrb[2] has multiple drivers: filtered_addrb_reg[2]/Q, and filtered_addrb_reg[2]__0/Q.
 ERROR: [DRC MDRV-1] Multiple Driver Nets: Net filtered_addrb[3] has multiple drivers: filtered_addrb_reg[3]/Q, and filtered_addrb_reg[3]__0/Q.
 ERROR: [DRC MDRV-1] Multiple Driver Nets: Net filtered_addrb[4] has multiple drivers: filtered_addrb_reg[4]__0/Q, and filtered_addrb_reg[4]/Q.
 ERROR: [DRC MDRV-1] Multiple Driver Nets: Net filtered_addrb[5] has multiple drivers: filtered_addrb_reg[5]/Q, and filtered_addrb_reg[5]__0/Q.
-ERROR: [DRC MDRV-1] Multiple Driver Nets: Net filtered_addrb[6] has multiple drivers: filtered_addrb_reg[6]/Q, and filtered_addrb_reg[6]__0/Q.
-ERROR: [DRC MDRV-1] Multiple Driver Nets: Net filtered_addrb[7] has multiple drivers: filtered_addrb_reg[7]__0/Q, and filtered_addrb_reg[7]/Q.
-ERROR: [DRC MDRV-1] Multiple Driver Nets: Net filtered_addrb[8] has multiple drivers: filtered_addrb_reg[8]/Q, and filtered_addrb_reg[8]__0/Q.
-ERROR: [DRC MDRV-1] Multiple Driver Nets: Net filtered_addrb[9] has multiple drivers: filtered_addrb_reg[9]__0/Q, and filtered_addrb_reg[9]/Q.
-ERROR: [DRC MDRV-1] Multiple Driver Nets: Net filtered_enb has multiple drivers: filtered_enb_reg/Q, and filtered_enb_reg__0/Q.
-ERROR: [DRC MDRV-1] Multiple Driver Nets: Net filtered_wea has multiple drivers: filtered_wea_reg/Q, and filtered_wea_reg__0/Q.
+ERROR: [DRC MDRV-1] Multiple Driver Nets: Net filtered_addrb[6] has multiple drivers: filtered_addrb_reg[6]__0/Q, and filtered_addrb_reg[6]/Q.
+ERROR: [DRC MDRV-1] Multiple Driver Nets: Net filtered_addrb[7] has multiple drivers: filtered_addrb_reg[7]/Q, and filtered_addrb_reg[7]__0/Q.
+ERROR: [DRC MDRV-1] Multiple Driver Nets: Net filtered_addrb[8] has multiple drivers: filtered_addrb_reg[8]__0/Q, and filtered_addrb_reg[8]/Q.
+ERROR: [DRC MDRV-1] Multiple Driver Nets: Net filtered_addrb[9] has multiple drivers: filtered_addrb_reg[9]/Q, and filtered_addrb_reg[9]__0/Q.
+ERROR: [DRC MDRV-1] Multiple Driver Nets: Net filtered_enb has multiple drivers: filtered_enb_reg__0/Q, and filtered_enb_reg/Q.
+ERROR: [DRC MDRV-1] Multiple Driver Nets: Net filtered_wea has multiple drivers: filtered_wea_reg__0/Q, and filtered_wea_reg/Q.
 INFO: [Project 1-461] DRC finished with 18 Errors
 INFO: [Project 1-462] Please refer to the DRC report (report_drc) for more information.
 ERROR: [Vivado_Tcl 4-78] Error(s) found during DRC. Opt_design not run.
 
-Time (s): cpu = 00:00:03 ; elapsed = 00:00:01 . Memory (MB): peak = 1035.762 ; gain = 0.000
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:01 . Memory (MB): peak = 1034.719 ; gain = 0.000
 INFO: [Common 17-83] Releasing license: Implementation
-13 Infos, 4 Warnings, 4 Critical Warnings and 19 Errors encountered.
+13 Infos, 0 Warnings, 0 Critical Warnings and 19 Errors encountered.
 opt_design failed
 ERROR: [Common 17-39] 'opt_design' failed due to earlier errors.
 
-INFO: [Common 17-206] Exiting Vivado at Thu Nov 17 14:20:12 2022...
+INFO: [Common 17-206] Exiting Vivado at Sun Nov 20 11:08:29 2022...

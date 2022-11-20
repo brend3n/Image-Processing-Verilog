@@ -70,9 +70,6 @@ proc create_report { reportName command } {
   }
 }
 OPTRACE "image_dp_ram_synth_1" START { ROLLUP_AUTO }
-set_param chipscope.maxJobs 2
-set_param xicom.use_bs_reader 1
-set_msg_config -id {Common 17-41} -limit 10000000
 set_param project.vivado.isBlockSynthRun true
 set_msg_config -msgmgr_mode ooc_run
 OPTRACE "Creating in-memory project" START { }
@@ -92,7 +89,7 @@ set_property ip_output_repo {c:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FP
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
-read_ip -quiet {{c:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/ip/image_dp_ram_1/image_dp_ram.xci}}
+read_ip -quiet {{C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/ip/image_dp_ram_1/image_dp_ram.xci}}
 set_property used_in_implementation false [get_files -all {{c:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/ip/image_dp_ram_1/image_dp_ram_ooc.xdc}}]
 
 OPTRACE "Adding files" END { }
@@ -190,15 +187,15 @@ if { [catch {
 
 }; # end if cached_ip 
 
-add_files {{C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.runs/image_dp_ram_synth_1/image_dp_ram_stub.v}} -of_objects [get_files {{c:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/ip/image_dp_ram_1/image_dp_ram.xci}}]
+add_files {{C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.runs/image_dp_ram_synth_1/image_dp_ram_stub.v}} -of_objects [get_files {{C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/ip/image_dp_ram_1/image_dp_ram.xci}}]
 
-add_files {{C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.runs/image_dp_ram_synth_1/image_dp_ram_stub.vhdl}} -of_objects [get_files {{c:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/ip/image_dp_ram_1/image_dp_ram.xci}}]
+add_files {{C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.runs/image_dp_ram_synth_1/image_dp_ram_stub.vhdl}} -of_objects [get_files {{C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/ip/image_dp_ram_1/image_dp_ram.xci}}]
 
-add_files {{C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.runs/image_dp_ram_synth_1/image_dp_ram_sim_netlist.v}} -of_objects [get_files {{c:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/ip/image_dp_ram_1/image_dp_ram.xci}}]
+add_files {{C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.runs/image_dp_ram_synth_1/image_dp_ram_sim_netlist.v}} -of_objects [get_files {{C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/ip/image_dp_ram_1/image_dp_ram.xci}}]
 
-add_files {{C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.runs/image_dp_ram_synth_1/image_dp_ram_sim_netlist.vhdl}} -of_objects [get_files {{c:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/ip/image_dp_ram_1/image_dp_ram.xci}}]
+add_files {{C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.runs/image_dp_ram_synth_1/image_dp_ram_sim_netlist.vhdl}} -of_objects [get_files {{C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/ip/image_dp_ram_1/image_dp_ram.xci}}]
 
-add_files {{C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.runs/image_dp_ram_synth_1/image_dp_ram.dcp}} -of_objects [get_files {{c:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/ip/image_dp_ram_1/image_dp_ram.xci}}]
+add_files {{C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.runs/image_dp_ram_synth_1/image_dp_ram.dcp}} -of_objects [get_files {{C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/ip/image_dp_ram_1/image_dp_ram.xci}}]
 
 if {[file isdir {C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.ip_user_files/ip/image_dp_ram}]} {
   catch { 

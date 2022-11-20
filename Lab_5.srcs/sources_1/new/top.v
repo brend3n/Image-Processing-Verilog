@@ -31,8 +31,7 @@ module top
 	output [11:0] rgb,      // VGA 12 FPGA pins for RGB(4 per color)
 	output [3:0] an,        // seven segment anodes
     output [0:6] seg,       // seven segement segment
-    output [14:0] led,      // Output LEDs
-    output tx               // Not sure if this is needed
+    output [14:0] led      // Output LEDs
 );
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -46,14 +45,14 @@ module top
     
     // A
     wire display_clka;
-    reg  display_ena = 1;
-    reg  display_wea = 0;
+    reg  display_ena;
+    reg  display_wea;
     reg  [15:0] display_addra;
     reg  [7:0]  display_dina;
     
     // B
     wire display_clkb;
-    reg  display_enb = 1;   
+    reg  display_enb;   
     reg  [15:0] display_addrb;
     wire [7:0] display_doutb;
 ////////////////////////////    
@@ -64,14 +63,14 @@ module top
     
     // Port A
     wire filtered_clka;
-    reg filtered_ena = 1;
-    reg filtered_wea = 0;
+    reg filtered_ena;
+    reg filtered_wea;
     reg  [15:0] filtered_addra;
     reg  [7:0]  filtered_dina;    
     
     // Port B
     wire filtered_clkb;
-    reg filtered_enb = 1;    
+    reg filtered_enb;    
     reg  [15:0] filtered_addrb;
     wire [7:0]  filtered_doutb;
 ////////////////////////////    
@@ -205,8 +204,8 @@ endmodule
     
     // Filter State Machine
     reg [3:0] filter_state;
-    reg [7:0] pixel [8:0]; // TODO: Not sure wtf this is. Maybe this is the 8 neighboring pixels, including the middle pixel?
-    reg [7:0] filter_pixel; // TODO: Same with this shit
+    reg [8:0] pixel [8:0]; // TODO: Not sure wtf this is. Maybe this is the 8 neighboring pixels, including the middle pixel?
+    reg [8:0] filter_pixel; // TODO: Same with this shit
     
     //Ram State Machine
     reg [2:0] ram_state;
@@ -247,7 +246,7 @@ endmodule
                       Keyboard_State <= 0; // Go back to the beginning   
                 end            
             end
-            15'd65000: // Example delay until reset keyboard state machine
+            16'd65000: // Example delay until reset keyboard state machine
             begin
                 Keyboard_State <= 0;
             end
@@ -257,7 +256,6 @@ endmodule
             end       
         endcase
     end
-    
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
     // Scan State Machine
     
@@ -303,6 +301,7 @@ endmodule
      
         endcase
     end
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Filter State Machine
@@ -331,9 +330,9 @@ endmodule
             4'd2:
             begin
 //               pixel[0] <= douta; // A
-                 pixel[0] <= filtered_doutb; // A
-               filtered_addrb <= filtered_addrb + 1;// B = Pixel_pos - NUM_COLS = A + 1 
-               filter_state <= 3;
+                pixel[0] <= filtered_doutb; // A
+                filtered_addrb <= filtered_addrb + 1;// B = Pixel_pos - NUM_COLS = A + 1 
+                filter_state <= 3;
             end
             4'd3:
             begin
@@ -507,4 +506,5 @@ endmodule
             end
         endcase
      end 
+
 endmodule

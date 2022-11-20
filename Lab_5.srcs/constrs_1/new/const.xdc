@@ -74,8 +74,8 @@ set_property PACKAGE_PIN N3 [get_ports {led[13]}]
 	set_property IOSTANDARD LVCMOS33 [get_ports {led[13]}]
 set_property PACKAGE_PIN P1 [get_ports {led[14]}]					
 	set_property IOSTANDARD LVCMOS33 [get_ports {led[14]}]
-set_property PACKAGE_PIN L1 [get_ports {led[15]}]					
-	set_property IOSTANDARD LVCMOS33 [get_ports {led[15]}]
+#set_property PACKAGE_PIN L1 [get_ports {led[15]}]					
+#	set_property IOSTANDARD LVCMOS33 [get_ports {led[15]}]
 	
 	
 #7 segment display
@@ -94,8 +94,8 @@ set_property PACKAGE_PIN V5 [get_ports {seg[5]}]
 set_property PACKAGE_PIN U7 [get_ports {seg[6]}]					
 	set_property IOSTANDARD LVCMOS33 [get_ports {seg[6]}]
 
-set_property PACKAGE_PIN V7 [get_ports dp]							
-	set_property IOSTANDARD LVCMOS33 [get_ports dp]
+#set_property PACKAGE_PIN V7 [get_ports dp]							
+#	set_property IOSTANDARD LVCMOS33 [get_ports dp]
 
 set_property PACKAGE_PIN U2 [get_ports {an[0]}]					
 	set_property IOSTANDARD LVCMOS33 [get_ports {an[0]}]
@@ -266,8 +266,8 @@ set_property IOSTANDARD LVCMOS33 [get_ports vsync]
 ##USB-RS232 Interface
 #set_property PACKAGE_PIN B18 [get_ports RsRx]						
 	#set_property IOSTANDARD LVCMOS33 [get_ports RsRx]
-set_property PACKAGE_PIN A18 [get_ports tx]						
-	set_property IOSTANDARD LVCMOS33 [get_ports tx]
+#set_property PACKAGE_PIN A18 [get_ports tx]						
+#	set_property IOSTANDARD LVCMOS33 [get_ports tx]
 
 
 ##USB HID (PS/2)
