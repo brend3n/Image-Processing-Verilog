@@ -28,7 +28,8 @@ module keyboard_interface(
     output [3:0]  an,
     output        tx,
     output [14:0] led,
-    output reg [7:0] data
+    output reg [7:0] data,
+    output key_pressed
 );
     wire        tready;
     wire        ready;
@@ -42,6 +43,7 @@ module keyboard_interface(
     reg  [ 2:0] bcount=0;
     wire        flag;
     reg         cn=0;
+    wire [15:0] key_pressed_wire;
     
     always @(posedge(clk))begin
         CLK50MHZ<=~CLK50MHZ;
@@ -52,7 +54,9 @@ module keyboard_interface(
         .kclk(PS2Clk),
         .kdata(PS2Data),
         .keycode(keycode),
+        .keycode_wire(key_pressed_wire),
         .oflag(flag)
+        
     );
     
     
@@ -72,10 +76,10 @@ module keyboard_interface(
         if (flag == 1'b1 && cn == 1'b1) begin
             start <= 1'b1;
             keycodev <= keycode;
-        end else
+        end else begin
             start <= 1'b0;
-            
-            
+        end         
+    
     assign led = keycodev[7:0];
             
     reg [3:0] digit_reg;
@@ -116,6 +120,7 @@ module keyboard_interface(
     
     
     assign digit = digit_reg;
+    assign key_pressed = (keycodev == 8'hf0)? 1:0;
     
     seven_segment_controller(
         .CLK100MHZ(clk),

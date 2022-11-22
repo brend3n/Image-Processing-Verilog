@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
-| Date         : Sun Nov 20 11:14:18 2022
+| Date         : Mon Nov 21 23:39:56 2022
 | Host         : Chungus running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file top_control_sets_placed.rpt
 | Design       : top
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |    17 |
-|    Minimum number of control sets                        |    17 |
+| Total control sets                                       |    36 |
+|    Minimum number of control sets                        |    36 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    60 |
+| Unused register locations in slices containing registers |    83 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,15 +39,15 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |    17 |
+| Total control sets |    36 |
 | >= 0 to < 4        |     4 |
-| >= 4 to < 6        |     3 |
+| >= 4 to < 6        |     5 |
 | >= 6 to < 8        |     2 |
-| >= 8 to < 10       |     2 |
+| >= 8 to < 10       |    11 |
 | >= 10 to < 12      |     2 |
 | >= 12 to < 14      |     0 |
-| >= 14 to < 16      |     0 |
-| >= 16              |     4 |
+| >= 14 to < 16      |     1 |
+| >= 16              |    11 |
 +--------------------+-------+
 * Control sets can be remapped at either synth_design or opt_design
 
@@ -58,38 +58,57 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |              24 |           11 |
-| No           | No                    | Yes                    |              34 |            9 |
-| No           | Yes                   | No                     |              20 |            6 |
-| Yes          | No                    | No                     |              43 |           12 |
+| No           | No                    | No                     |              37 |           18 |
+| No           | No                    | Yes                    |              34 |           11 |
+| No           | Yes                   | No                     |              20 |            7 |
+| Yes          | No                    | No                     |             237 |           69 |
 | Yes          | No                    | Yes                    |              10 |            3 |
-| Yes          | Yes                   | No                     |               9 |            3 |
+| Yes          | Yes                   | No                     |              27 |            7 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
 4. Detailed Control Set Information
 -----------------------------------
 
-+--------------------------------+------------------------------------------+--------------------------------------+------------------+----------------+--------------+
-|          Clock Signal          |               Enable Signal              |           Set/Reset Signal           | Slice Load Count | Bel Load Count | Bels / Slice |
-+--------------------------------+------------------------------------------+--------------------------------------+------------------+----------------+--------------+
-|  CLK50MHZ_BUFG                 | keyb_int/uut/db_clk/O_i_1_n_0            |                                      |                1 |              1 |         1.00 |
-|  CLK50MHZ_BUFG                 | keyb_int/uut/db_clk/clear                |                                      |                1 |              1 |         1.00 |
-|  CLK50MHZ_BUFG                 | keyb_int/uut/db_data/Iv_i_1__0_n_0       |                                      |                1 |              1 |         1.00 |
-|  CLK50MHZ_BUFG                 | keyb_int/uut/db_data/O_i_1__0_n_0        |                                      |                1 |              1 |         1.00 |
-|  clk_100MHz_IBUF_BUFG          |                                          | keyb_int/uut/keycode_reg[7]_0        |                2 |              4 |         2.00 |
-| ~keyb_int/uut/db_clk/clk       | keyb_int/uut/cnt                         | keyb_int/uut/cnt[3]_i_1_n_0          |                1 |              4 |         4.00 |
-|  CLK50MHZ_BUFG                 | keyb_int/uut/db_data/count[4]_i_1__0_n_0 | keyb_int/uut/db_data/Iv_i_1__0_n_0   |                2 |              5 |         2.50 |
-|  CLK50MHZ_BUFG                 |                                          |                                      |                4 |              7 |         1.75 |
-|  clk_100MHz_IBUF_BUFG          | keyb_int/nolabel_line120/segment         |                                      |                1 |              7 |         7.00 |
-|  clk_100MHz_IBUF_BUFG          |                                          |                                      |                4 |              8 |         2.00 |
-| ~keyb_int/uut/db_clk/clk       |                                          |                                      |                3 |              9 |         3.00 |
-|  vga_c/h_count_next[9]_i_2_n_0 |                                          | reset_IBUF                           |                3 |             10 |         3.33 |
-|  vga_c/h_count_next[9]_i_2_n_0 | vga_c/v_count_next_1                     | reset_IBUF                           |                3 |             10 |         3.33 |
-|  CLK50MHZ_BUFG                 | keyb_int/uut/keycode[15]_i_1_n_0         |                                      |                2 |             16 |         8.00 |
-|  clk_100MHz_IBUF_BUFG          |                                          | keyb_int/nolabel_line120/out_clk_reg |                4 |             16 |         4.00 |
-|  clk_100MHz_IBUF_BUFG          | keyb_int/uut/E[0]                        |                                      |                5 |             16 |         3.20 |
-|  clk_100MHz_IBUF_BUFG          |                                          | reset_IBUF                           |                6 |             24 |         4.00 |
-+--------------------------------+------------------------------------------+--------------------------------------+------------------+----------------+--------------+
++--------------------------+------------------------------------------+--------------------------------------+------------------+----------------+--------------+
+|       Clock Signal       |               Enable Signal              |           Set/Reset Signal           | Slice Load Count | Bel Load Count | Bels / Slice |
++--------------------------+------------------------------------------+--------------------------------------+------------------+----------------+--------------+
+|  CLK50MHZ_BUFG           | keyb_int/uut/db_clk/clear                |                                      |                1 |              1 |         1.00 |
+|  CLK50MHZ_BUFG           | keyb_int/uut/db_clk/O_i_1_n_0            |                                      |                1 |              1 |         1.00 |
+|  CLK50MHZ_BUFG           | keyb_int/uut/db_data/O_i_1__0_n_0        |                                      |                1 |              1 |         1.00 |
+|  CLK50MHZ_BUFG           | keyb_int/uut/db_data/Iv_i_1__0_n_0       |                                      |                1 |              1 |         1.00 |
+|  clk_100MHz_IBUF_BUFG    | filter_state[3]_i_1_n_0                  |                                      |                2 |              4 |         2.00 |
+|  clk_100MHz_IBUF_BUFG    | write_state[0]                           | vga_c/write_state_reg[0]             |                1 |              4 |         4.00 |
+|  clk_100MHz_IBUF_BUFG    |                                          | keyb_int/uut/keycode_reg[7]_0        |                3 |              4 |         1.33 |
+| ~keyb_int/uut/db_clk/clk | keyb_int/uut/cnt                         | keyb_int/uut/cnt[3]_i_1_n_0          |                1 |              4 |         4.00 |
+|  CLK50MHZ_BUFG           | keyb_int/uut/db_data/count[4]_i_1__0_n_0 | keyb_int/uut/db_data/Iv_i_1__0_n_0   |                1 |              5 |         5.00 |
+|  CLK50MHZ_BUFG           |                                          |                                      |                3 |              7 |         2.33 |
+|  clk_100MHz_IBUF_BUFG    | keyb_int/nolabel_line125/segment         |                                      |                1 |              7 |         7.00 |
+|  clk_100MHz_IBUF_BUFG    | pixel[0][7]_i_1_n_0                      |                                      |                1 |              8 |         8.00 |
+|  clk_100MHz_IBUF_BUFG    | pixel[8][7]_i_1_n_0                      |                                      |                2 |              8 |         4.00 |
+|  clk_100MHz_IBUF_BUFG    | filter_pixel_i_1_n_0                     |                                      |                3 |              8 |         2.67 |
+|  clk_100MHz_IBUF_BUFG    | pixel[7][7]_i_1_n_0                      |                                      |                2 |              8 |         4.00 |
+|  clk_100MHz_IBUF_BUFG    | pixel[5][7]_i_1_n_0                      |                                      |                2 |              8 |         4.00 |
+|  clk_100MHz_IBUF_BUFG    | pixel[1][7]_i_1_n_0                      |                                      |                1 |              8 |         8.00 |
+|  clk_100MHz_IBUF_BUFG    | pixel[2][7]_i_1_n_0                      |                                      |                1 |              8 |         8.00 |
+|  clk_100MHz_IBUF_BUFG    | pixel[6][7]_i_1_n_0                      |                                      |                3 |              8 |         2.67 |
+|  clk_100MHz_IBUF_BUFG    | pixel[4][7]_i_1_n_0                      |                                      |                3 |              8 |         2.67 |
+|  clk_100MHz_IBUF_BUFG    | pixel[3][7]_i_1_n_0                      |                                      |                2 |              8 |         4.00 |
+| ~keyb_int/uut/db_clk/clk |                                          |                                      |                3 |              9 |         3.00 |
+|  vga_c/pixel_clk         |                                          | reset_IBUF                           |                3 |             10 |         3.33 |
+|  vga_c/pixel_clk         | vga_c/v_count_next_1                     | reset_IBUF                           |                3 |             10 |         3.33 |
+|  clk_100MHz_IBUF_BUFG    | Keyboard_State                           | Keyboard_State[15]_i_1_n_0           |                4 |             14 |         3.50 |
+|  CLK50MHZ_BUFG           | keyb_int/uut/keycode[15]_i_1_n_0         |                                      |                4 |             16 |         4.00 |
+|  clk_100MHz_IBUF_BUFG    | display_addra[15]_i_1_n_0                |                                      |                3 |             16 |         5.33 |
+|  clk_100MHz_IBUF_BUFG    | display_addrb[15]_i_1_n_0                |                                      |                4 |             16 |         4.00 |
+|  clk_100MHz_IBUF_BUFG    | keyb_int/uut/E[0]                        |                                      |                4 |             16 |         4.00 |
+|  clk_100MHz_IBUF_BUFG    | filtered_addrb[15]_i_1_n_0               |                                      |                7 |             16 |         2.29 |
+|  clk_100MHz_IBUF_BUFG    |                                          | keyb_int/nolabel_line125/out_clk_reg |                4 |             16 |         4.00 |
+|  clk_100MHz_IBUF_BUFG    | scan_state0                              |                                      |                5 |             18 |         3.60 |
+|  clk_100MHz_IBUF_BUFG    | display_dina                             |                                      |                5 |             20 |         4.00 |
+|  clk_100MHz_IBUF_BUFG    |                                          |                                      |               12 |             21 |         1.75 |
+|  clk_100MHz_IBUF_BUFG    |                                          | reset_IBUF                           |                8 |             24 |         3.00 |
+|  clk_100MHz_IBUF_BUFG    | filtered_dina                            |                                      |               10 |             24 |         2.40 |
++--------------------------+------------------------------------------+--------------------------------------+------------------+----------------+--------------+
 
 

@@ -123,6 +123,7 @@ set ACTIVE_STEP write_bitstream
 set rc [catch {
   create_msg_db write_bitstream.pb
   set_param chipscope.maxJobs 2
+  set_param xicom.use_bs_reader 1
   open_checkpoint top_routed.dcp
   set_property webtalk.parent_dir {C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.cache/wt} [current_project]
 set_property TOP top [current_fileset]

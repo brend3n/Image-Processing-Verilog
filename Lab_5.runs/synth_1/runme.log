@@ -17,24 +17,24 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t
 INFO: [Device 21-403] Loading part xc7a35tcpg236-1
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 13256
+INFO: [Synth 8-7075] Helper process launched with PID 7472
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1033.477 ; gain = 0.000
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1034.449 ; gain = 0.000
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'top' [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/new/top.v:23]
 	Parameter X_OFFSET bound to: 240 - type: integer 
 	Parameter Y_OFFSET bound to: 300 - type: integer 
-INFO: [Synth 8-6157] synthesizing module 'image_dp_ram' [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.runs/synth_1/.Xil/Vivado-2644-Chungus/realtime/image_dp_ram_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'image_dp_ram' (1#1) [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.runs/synth_1/.Xil/Vivado-2644-Chungus/realtime/image_dp_ram_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'image_dp_ram' [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.runs/synth_1/.Xil/Vivado-12668-Chungus/realtime/image_dp_ram_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'image_dp_ram' (1#1) [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.runs/synth_1/.Xil/Vivado-12668-Chungus/realtime/image_dp_ram_stub.v:6]
 INFO: [Synth 8-6157] synthesizing module 'keyboard_interface' [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/new/keyboard_interface.v:23]
 INFO: [Synth 8-6157] synthesizing module 'ps2_receiver' [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/new/ps2_receiver.v:23]
 INFO: [Synth 8-6157] synthesizing module 'debouncer' [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/new/debouncer.v:23]
 	Parameter COUNT_MAX bound to: 19 - type: integer 
 	Parameter COUNT_WIDTH bound to: 5 - type: integer 
 INFO: [Synth 8-6155] done synthesizing module 'debouncer' (2#1) [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/new/debouncer.v:23]
-INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/new/ps2_receiver.v:55]
+INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/new/ps2_receiver.v:56]
 INFO: [Synth 8-6155] done synthesizing module 'ps2_receiver' (3#1) [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/new/ps2_receiver.v:23]
-WARNING: [Synth 8-567] referenced signal 'keycodev' should be on the sensitivity list [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/new/keyboard_interface.v:59]
+WARNING: [Synth 8-567] referenced signal 'keycodev' should be on the sensitivity list [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/new/keyboard_interface.v:63]
 INFO: [Synth 8-6157] synthesizing module 'seven_segment_controller' [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/new/seven_segment_controller.v:21]
 	Parameter NULL bound to: 7'b1111111 
 	Parameter ZERO bound to: 7'b0000001 
@@ -57,7 +57,7 @@ INFO: [Synth 8-6157] synthesizing module 'seven_segment_controller' [C:/Users/Br
 INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/new/seven_segment_controller.v:75]
 INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/new/seven_segment_controller.v:105]
 INFO: [Synth 8-6155] done synthesizing module 'seven_segment_controller' (4#1) [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/new/seven_segment_controller.v:21]
-WARNING: [Synth 8-567] referenced signal 'digit_reg' should be on the sensitivity list [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/new/keyboard_interface.v:128]
+WARNING: [Synth 8-567] referenced signal 'digit_reg' should be on the sensitivity list [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/new/keyboard_interface.v:133]
 INFO: [Synth 8-6155] done synthesizing module 'keyboard_interface' (5#1) [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/new/keyboard_interface.v:23]
 INFO: [Synth 8-6157] synthesizing module 'vga_controller' [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/new/vga_controller.v:3]
 	Parameter HD bound to: 640 - type: integer 
@@ -71,52 +71,52 @@ INFO: [Synth 8-6157] synthesizing module 'vga_controller' [C:/Users/Brenden Mort
 	Parameter VR bound to: 2 - type: integer 
 	Parameter VMAX bound to: 524 - type: integer 
 INFO: [Synth 8-6155] done synthesizing module 'vga_controller' (6#1) [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/new/vga_controller.v:3]
-INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/new/top.v:423]
-INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/new/top.v:481]
+INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/new/top.v:426]
+INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/new/top.v:480]
 INFO: [Synth 8-6155] done synthesizing module 'top' (7#1) [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/new/top.v:23]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1085.805 ; gain = 52.328
+Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1086.270 ; gain = 51.820
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1085.805 ; gain = 52.328
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1086.270 ; gain = 51.820
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1085.805 ; gain = 52.328
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1086.270 ; gain = 51.820
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.014 . Memory (MB): peak = 1085.805 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.014 . Memory (MB): peak = 1086.270 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
-Parsing XDC File [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.runs/synth_1/.Xil/Vivado-2644-Chungus/image_dp_ram_1/image_dp_ram/image_dp_ram_in_context.xdc] for cell 'display'
-Finished Parsing XDC File [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.runs/synth_1/.Xil/Vivado-2644-Chungus/image_dp_ram_1/image_dp_ram/image_dp_ram_in_context.xdc] for cell 'display'
-Parsing XDC File [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.runs/synth_1/.Xil/Vivado-2644-Chungus/image_dp_ram_1/image_dp_ram/image_dp_ram_in_context.xdc] for cell 'filtered'
-Finished Parsing XDC File [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.runs/synth_1/.Xil/Vivado-2644-Chungus/image_dp_ram_1/image_dp_ram/image_dp_ram_in_context.xdc] for cell 'filtered'
+Parsing XDC File [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.runs/synth_1/.Xil/Vivado-12668-Chungus/image_dp_ram_1/image_dp_ram/image_dp_ram_in_context.xdc] for cell 'display'
+Finished Parsing XDC File [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.runs/synth_1/.Xil/Vivado-12668-Chungus/image_dp_ram_1/image_dp_ram/image_dp_ram_in_context.xdc] for cell 'display'
+Parsing XDC File [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.runs/synth_1/.Xil/Vivado-12668-Chungus/image_dp_ram_1/image_dp_ram/image_dp_ram_in_context.xdc] for cell 'filtered'
+Finished Parsing XDC File [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.runs/synth_1/.Xil/Vivado-12668-Chungus/image_dp_ram_1/image_dp_ram/image_dp_ram_in_context.xdc] for cell 'filtered'
 Parsing XDC File [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/constrs_1/new/const.xdc]
 Finished Parsing XDC File [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/constrs_1/new/const.xdc]
 INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/constrs_1/new/const.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/top_propImpl.xdc].
 Resolution: To avoid this warning, move constraints listed in [.Xil/top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1213.176 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1197.117 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 1213.176 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 1197.117 ; gain = 0.000
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'display' at clock pin 'clka' is different from the actual clock period '10.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'filtered' at clock pin 'clka' is different from the actual clock period '10.000', this can lead to different synthesis results.
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 1218.473 ; gain = 184.996
+Finished Constraint Validation : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 1204.793 ; gain = 170.344
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tcpg236-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 1218.473 ; gain = 184.996
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 1204.793 ; gain = 170.344
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -124,53 +124,64 @@ Start Applying 'set_property' XDC Constraints
 Applied set_property DONT_TOUCH = true for display. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for filtered. (constraint file  auto generated constraint, line ).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 1218.473 ; gain = 184.996
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 1204.793 ; gain = 170.344
 ---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'ram_state_reg' in module 'top'
 WARNING: [Synth 8-327] inferring latch for variable 'anode_reg' [C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.srcs/sources_1/new/seven_segment_controller.v:106]
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                 iSTATE2 |                              000 |                              000
+                 iSTATE3 |                              001 |                              001
+                  iSTATE |                              010 |                              010
+                 iSTATE0 |                              011 |                              011
+                 iSTATE1 |                              100 |                              100
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'ram_state_reg' using encoding 'sequential' in module 'top'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1218.473 ; gain = 184.996
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1204.793 ; gain = 170.344
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
 +---Adders : 
-	   2 Input   32 Bit       Adders := 8     
 	   2 Input   17 Bit       Adders := 1     
-	   2 Input   16 Bit       Adders := 11    
+	   2 Input   16 Bit       Adders := 6     
+	   9 Input   12 Bit       Adders := 1     
 	   2 Input   10 Bit       Adders := 2     
 	   2 Input    5 Bit       Adders := 2     
 	   2 Input    4 Bit       Adders := 1     
 	   2 Input    2 Bit       Adders := 2     
+	   2 Input    1 Bit       Adders := 1     
 +---Registers : 
 	               17 Bit    Registers := 1     
 	               16 Bit    Registers := 7     
+	               12 Bit    Registers := 1     
 	               10 Bit    Registers := 4     
-	                9 Bit    Registers := 9     
-	                8 Bit    Registers := 5     
+	                8 Bit    Registers := 14    
 	                7 Bit    Registers := 1     
 	                5 Bit    Registers := 2     
 	                4 Bit    Registers := 5     
-	                3 Bit    Registers := 1     
 	                2 Bit    Registers := 2     
-	                1 Bit    Registers := 14    
-+---Multipliers : 
-	              32x32  Multipliers := 1     
+	                1 Bit    Registers := 16    
 +---Muxes : 
 	   2 Input   17 Bit        Muxes := 1     
+	   2 Input   16 Bit        Muxes := 1     
 	   4 Input   16 Bit        Muxes := 1     
-	   6 Input   16 Bit        Muxes := 1     
+	   5 Input   16 Bit        Muxes := 1     
+	   2 Input   12 Bit        Muxes := 5     
 	   2 Input    4 Bit        Muxes := 4     
 	  13 Input    4 Bit        Muxes := 1     
-	   7 Input    3 Bit        Muxes := 1     
+	   5 Input    3 Bit        Muxes := 1     
+	   2 Input    3 Bit        Muxes := 1     
 	   2 Input    2 Bit        Muxes := 1     
 	   5 Input    2 Bit        Muxes := 1     
 	   2 Input    1 Bit        Muxes := 18    
 	   3 Input    1 Bit        Muxes := 1     
 	  12 Input    1 Bit        Muxes := 2     
 	  16 Input    1 Bit        Muxes := 16    
-	   5 Input    1 Bit        Muxes := 1     
-	   6 Input    1 Bit        Muxes := 10    
+	   5 Input    1 Bit        Muxes := 9     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -187,25 +198,25 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1218.473 ; gain = 184.996
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1204.793 ; gain = 170.344
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:26 ; elapsed = 00:00:26 . Memory (MB): peak = 1218.473 ; gain = 184.996
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 1204.793 ; gain = 170.344
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:26 ; elapsed = 00:00:26 . Memory (MB): peak = 1218.473 ; gain = 184.996
+Finished Timing Optimization : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 1204.793 ; gain = 170.344
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 1218.473 ; gain = 184.996
+Finished Technology Mapping : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 1204.793 ; gain = 170.344
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -222,40 +233,38 @@ Start Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
-CRITICAL WARNING: [Synth 8-4442] BlackBox module display has unconnected pin enb
-CRITICAL WARNING: [Synth 8-4442] BlackBox module filtered has unconnected pin ena
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 1218.473 ; gain = 184.996
+Finished IO Insertion : Time (s): cpu = 00:00:32 ; elapsed = 00:00:34 . Memory (MB): peak = 1204.793 ; gain = 170.344
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 1218.473 ; gain = 184.996
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:32 ; elapsed = 00:00:34 . Memory (MB): peak = 1204.793 ; gain = 170.344
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 1218.473 ; gain = 184.996
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:33 ; elapsed = 00:00:34 . Memory (MB): peak = 1204.793 ; gain = 170.344
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 1218.473 ; gain = 184.996
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:33 ; elapsed = 00:00:34 . Memory (MB): peak = 1204.793 ; gain = 170.344
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 1218.473 ; gain = 184.996
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:33 ; elapsed = 00:00:34 . Memory (MB): peak = 1204.793 ; gain = 170.344
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 1218.473 ; gain = 184.996
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:33 ; elapsed = 00:00:34 . Memory (MB): peak = 1204.793 ; gain = 170.344
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -275,40 +284,39 @@ Report Cell Usage:
 |1     |image_dp_ram  |     1|
 |2     |image_dp_ram_ |     1|
 |3     |BUFG          |     2|
-|4     |CARRY4        |    73|
-|5     |LUT1          |    79|
-|6     |LUT2          |    98|
-|7     |LUT3          |    18|
-|8     |LUT4          |    48|
-|9     |LUT5          |    25|
-|10    |LUT6          |    77|
+|4     |CARRY4        |    55|
+|5     |LUT1          |    55|
+|6     |LUT2          |    26|
+|7     |LUT3          |    60|
+|8     |LUT4          |    78|
+|9     |LUT5          |    45|
+|10    |LUT6          |    84|
 |11    |FDCE          |    44|
-|12    |FDRE          |   271|
+|12    |FDRE          |   318|
 |13    |FDSE          |     4|
-|14    |IBUF          |     4|
-|15    |OBUF          |    28|
-|16    |OBUFT         |    12|
+|14    |IBUF          |     5|
+|15    |OBUF          |    40|
 +------+--------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 1218.473 ; gain = 184.996
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:33 ; elapsed = 00:00:34 . Memory (MB): peak = 1204.793 ; gain = 170.344
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 2 critical warnings and 1 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:21 ; elapsed = 00:00:28 . Memory (MB): peak = 1218.473 ; gain = 52.328
-Synthesis Optimization Complete : Time (s): cpu = 00:00:31 ; elapsed = 00:00:31 . Memory (MB): peak = 1218.473 ; gain = 184.996
+Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:23 ; elapsed = 00:00:31 . Memory (MB): peak = 1204.793 ; gain = 51.820
+Synthesis Optimization Complete : Time (s): cpu = 00:00:33 ; elapsed = 00:00:34 . Memory (MB): peak = 1204.793 ; gain = 170.344
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.011 . Memory (MB): peak = 1218.473 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 73 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.011 . Memory (MB): peak = 1213.051 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 55 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1218.473 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1213.051 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
 INFO: [Common 17-83] Releasing license: Synthesis
-34 Infos, 5 Warnings, 2 Critical Warnings and 0 Errors encountered.
+36 Infos, 5 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:37 ; elapsed = 00:00:39 . Memory (MB): peak = 1218.473 ; gain = 184.996
+synth_design: Time (s): cpu = 00:00:39 ; elapsed = 00:00:42 . Memory (MB): peak = 1213.051 ; gain = 178.602
 INFO: [Common 17-1381] The checkpoint 'C:/Users/Brenden Morton/Desktop/TopDesk/UCF/Grad/FPGA/Lab_5/Lab_5.runs/synth_1/top.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file top_utilization_synth.rpt -pb top_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Sun Nov 20 11:12:58 2022...
+INFO: [Common 17-206] Exiting Vivado at Mon Nov 21 23:38:57 2022...

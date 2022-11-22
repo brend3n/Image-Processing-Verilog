@@ -25,6 +25,7 @@ module ps2_receiver(
     input kclk,
     input kdata,
     output reg [15:0] keycode=0,
+    output [15:0] keycode_wire,
     output reg oflag
     );
     
@@ -80,5 +81,7 @@ always@(posedge clk) begin
         oflag <= 'b0;
     pflag <= flag;
 end
+
+assign keycode_wire = (oflag == 1) ? {dataprev, datacur} : 0;
 
 endmodule

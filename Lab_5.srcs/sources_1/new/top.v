@@ -24,6 +24,7 @@ module top
 (
 	input clk_100MHz,       // System Clock from Basys 3
 	input reset,            // Reset button
+	input btnU,
 	input PS2Data,          // PS2 Keyboard Data stream
     input PS2Clk,           // PS2 Keyboard clk,
 	output hsync,           // VGA horizontal sync
@@ -45,14 +46,14 @@ module top
     
     // A
     wire display_clka;
-    reg  display_ena;
-    reg  display_wea;
+    reg  display_ena = 1;
+    reg  display_wea = 0;
     reg  [15:0] display_addra;
     reg  [7:0]  display_dina;
     
     // B
     wire display_clkb;
-    reg  display_enb;   
+    reg  display_enb = 1;   
     reg  [15:0] display_addrb;
     wire [7:0] display_doutb;
 ////////////////////////////    
@@ -63,14 +64,14 @@ module top
     
     // Port A
     wire filtered_clka;
-    reg filtered_ena;
-    reg filtered_wea;
+    reg filtered_ena = 1;
+    reg filtered_wea = 0;
     reg  [15:0] filtered_addra;
     reg  [7:0]  filtered_dina;    
     
     // Port B
     wire filtered_clkb;
-    reg filtered_enb;    
+    reg filtered_enb = 1;    
     reg  [15:0] filtered_addrb;
     wire [7:0]  filtered_doutb;
 ////////////////////////////    
@@ -94,6 +95,7 @@ module top
     reg  [7:0]  data_reg;        // Stores last input from keyboard
     reg  [7:0]  data_reg_prev;   // Stores previous digit
     wire [7:0]  data_wire;       // Wire for last input from keyboard
+    wire key_pressed;
     
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
    
@@ -133,7 +135,8 @@ module top
         .an(an),
         .tx(tx),
         .led(led),
-        .data(data_wire)
+        .data(data_wire),
+        .key_pressed(key_pressed)
     );
     
     // Instantiate VGA Controller
@@ -147,9 +150,9 @@ module top
         .x(x_pos), 
         .y(y_pos)
     );
-/*
+
 // Code test for Displaying pixel data 
-    
+    /*
     // Get Address
     always @(posedge clk_100MHz) 
     begin
@@ -171,19 +174,19 @@ module top
                 
             end                    
             else     
-                rgb_reg <= 12'b00000000;                          
+                rgb_reg <= 12'b000000000000;                          
            
         end // if pixel_clk
         else
         begin
-            rgb_reg <= 12'b00000000;
+            rgb_reg <= 12'b000000000000;
         end
     end // always
         
     // Update pixel color data
     assign rgb = (video_on) ? rgb_reg : 12'b000000000000;
        
-endmodule
+//endmodule
 */
 
 
@@ -193,6 +196,7 @@ endmodule
     // Keyboard State Machine
     reg[15:0] Keyboard_State;
     wire keyboard_pressed;
+    reg counter_color = 0;
     // TODO: Not sure what this is yet
     reg data;
     wire scan_start;
@@ -209,31 +213,44 @@ endmodule
     
     //Ram State Machine
     reg [2:0] ram_state;
-    reg [15:0] counter;
+    reg [15:0] counter = 0;
        
     // Display State Machine
-    reg [3:0] write_state;    
+    reg [3:0] write_state = 0;    
     
     // TODO: Not sure if need to move these to the bottom or else
-    assign keyboard_pressed = (data_wire != 0)? 1 : 0;
+    assign keyboard_pressed = (counter_color == 1)? 1 : 0;
     assign scan_start = (Keyboard_State == 1) ? 1 : 0;
     assign scan_end = (scan_state == 65355)   ? 1 : 0;
     assign filter_start = (scan_state == 1)   ? 1 : 0;
     assign filter_end = (filter_state == 14)  ? 1 : 0;
-    assign write_end = (counter == 65355)     ? 1 : 0;    
+    assign write_end = (counter == 65355)     ? 1 : 0;
+    assign rgb = (video_on) ? rgb_reg : 12'b000000000000;   
     
+    
+    ///////////////
+    
+    ///////////////
+// Temporary fix since I cant get keyboard to work
+always @ (posedge clk_100MHz)begin
+    if (btnU == 1)begin
+        counter_color <= counter_color + 1; 
+    end
+end    
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
-// Keyboard State Machine     
-    always @ (posedge clk_100MHz) begin    
+// Keyboard State Machine
+
+always @ (posedge clk_100MHz) begin 
+   
     // Keyboard State Machine
-//    always @(posedge clk_100MHz) begin
+
         case (Keyboard_State)
             15'd0:
             begin
                 // We register the keyboard press. Move on to the next state to start  
                 if (keyboard_pressed == 1)
                 begin
-                      Keyboard_State <= 1;   
+                      Keyboard_State <= 1;                       
                 end            
             end
             15'd1: // Scan Start
@@ -255,15 +272,15 @@ endmodule
                 Keyboard_State <= Keyboard_State + 1; // The width of the keyboardstate register is the delay in this state
             end       
         endcase
-//    end
+
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
     // Scan State Machine
     
     // scan_state[1:0] for state machine
     // scan_state[17:2] for memory addresses <- increase after each finish filtering each pixel
     
-    
-//    always @(posedge clk_100MHz) begin
+ 
         case(scan_state[1:0])
             2'd0:
             begin 
@@ -271,15 +288,6 @@ endmodule
                 begin
                     scan_state <= scan_state + 1;
                 end
-                
-//                //////////////////////////////
-//                // Not sure about this part
-//                if (scan_state[17:2] == 65535)
-//                begin
-//                    scan_state <= 0;
-//                end
-//                scan_state <= 1;
-//                //////////////////////////////
             end
             2'd1:
             begin
@@ -300,13 +308,11 @@ endmodule
             end
      
         endcase
-//    end
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Filter State Machine
-
-//    always @(posedge clk_100MHz) begin
         case (filter_state)
             4'd0:
             begin
@@ -413,13 +419,10 @@ endmodule
                 filter_state <= 0;
             end
         endcase
-//    end
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
 //Ram State Machine
 
-//    always @(posedge clk_100MHz) 
-//    begin
            case (ram_state)
                3'd0:
                begin
@@ -441,24 +444,22 @@ endmodule
                begin                                      
                    display_addra <= counter;
                    filtered_addrb <= counter;
-                   ram_state <= 1;                                              
+                   ram_state <= 2;                                              
                end
                3'd2:
                begin
                    display_dina <= filtered_doutb;
                    counter <= counter + 1;
-                   ram_state <= 2;
+                   ram_state <= 3;
                end
                2'd3:
                begin
                    // opposite logic from the first state                   
                    filtered_wea <= 0;
-                   filtered_enb <= 0;
-                  
+                                 
                    // Read and write from Display RAM
-                   display_ena <= 0;
                    display_wea <= 0;
-                   ram_state <= 3;
+                   ram_state <= 4;
                end
                3'd4:
                begin
@@ -472,12 +473,10 @@ endmodule
                    end
                end            
            endcase
-//    end 
+
  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  // Display state machine
-  
-     
-//     always @(posedge clk_100MHz) begin
+    
         case (write_state)
             4'd0:
             begin
@@ -491,11 +490,13 @@ endmodule
                     // Display region
                     if (((x_pos >= X_OFFSET) && (x_pos <= X_OFFSET + 256 -1)) && ((y_pos >= Y_OFFSET) && (y_pos <= Y_OFFSET + 256-1))) 
                     begin
+                        
                         // Write color data                    
                         rgb_reg[3:0]  = display_doutb[7:4]; // Upper 4-bits of data
                         rgb_reg[7:4]  = display_doutb[7:4];
                         rgb_reg[11:8] = display_doutb[7:4];
                         write_state <= 0;
+                                               
                     end
                     else
                     begin
@@ -503,8 +504,12 @@ endmodule
                         write_state <= 0;
                     end
                 end
+                else
+                begin
+                    rgb_reg <= 12'b000000000000;
+                end
             end
         endcase
-//     end 
-    end
+      
+    end   
 endmodule
